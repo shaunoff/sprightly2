@@ -1,0 +1,10 @@
+type User {
+  id: Int!
+  email: String!
+  name: String
+}
+
+type Auth {
+  user: User
+  token: String
+}

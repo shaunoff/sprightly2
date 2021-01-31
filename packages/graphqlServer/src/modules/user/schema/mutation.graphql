@@ -1,0 +1,23 @@
+# input NewUserData {
+#   password: String!
+#   email: String!
+#   firstName: String!
+#   lastName: String!
+#   avatar: String!
+# }
+
+input LoginData {
+  email: String!
+  password: String!
+}
+
+input SignupData {
+  email: String!
+  password: String!
+  name: String!
+}
+
+type Mutation {
+  signUp(data: SignupData!): Auth!
+  signIn(data: LoginData!): Auth!
+}

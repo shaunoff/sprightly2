@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.settings.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "allowJs": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "./src",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true
+  }
+}

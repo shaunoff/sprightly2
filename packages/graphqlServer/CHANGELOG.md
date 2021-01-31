@@ -9,14 +9,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * Add Graphql server ([#1](https://github.com/shaunoff/sprightly/issues/1)) ([49590ba](https://github.com/shaunoff/sprightly/commit/49590ba3fa403936c2ee6c6192389cf848c63b3e))
-
-
-
-
-
-# 0.1.0 (2021-01-31)
-
-
-### Features
-
-* initial webApp ([6db95c0](https://github.com/shaunoff/sprightly/commit/6db95c03e1d3f654cffbeaa5654cc5a756a0ad6b))

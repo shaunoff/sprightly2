@@ -1,0 +1,36 @@
+{
+  "name": "@sprightly/graphql-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src --ext ts,js,tsx,jsx --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist/*; tsc --build --listEmittedFiles && copyfiles -u 1 ./src/**/*.graphql dist",
+    "start": "nodemon src/index.ts",
+    "start:build": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.20.0",
+    "@graphql-codegen/typescript-resolvers": "^1.18.1",
+    "@graphql-tools/load-files": "^6.2.5",
+    "@graphql-tools/merge": "^6.2.6",
+    "@types/bcrypt": "^3.0.0",
+    "@types/node": "^14.14.20",
+    "apollo-server": "^2.19.1",
+    "bcrypt": "^5.0.0",
+    "copyfiles": "^2.4.1",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "@prisma/cli": "^2.14.0",
+    "@prisma/client": "^2.14.0"
+  },
+  "dependencies": {
+    "apollo-datasource": "^0.7.2",
+    "apollo-server": "^2.19.1",
+    "graphql": "^15.4.0"
+  }
+}

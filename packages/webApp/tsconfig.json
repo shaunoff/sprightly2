@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.settings.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "react",
+    "rootDir": "./src",
+    "incremental": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2015"]
+  },
+  "include": ["src"]
+}

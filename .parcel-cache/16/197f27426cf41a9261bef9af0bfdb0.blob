@@ -1,0 +1,30 @@
+"use strict";
+
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  var _react = _interopRequireDefault(require("react"));
+
+  var _reactDom = require("react-dom");
+
+  var _jsxFileName = "/Users/shaunhutch/promoboxx/pbxxdev/sprightly/packages/webApp/src/index.tsx";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  (0, _reactDom.render)( /*#__PURE__*/_react.default.createElement("h1", {
+    __self: void 0,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 4,
+      columnNumber: 8
+    }
+  }, "dddsssssssdsadsaHello World"), document.getElementById('root'));
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

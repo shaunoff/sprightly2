@@ -1,0 +1,17 @@
+{
+  "name": "@sprightly/web-app",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "shaun Hutch",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

@@ -9,20 +9,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * actually add server ([28d464b](https://github.com/shaunoff/sprightly/commit/28d464b8f98448c39e23f4a83f8d9b61fa78db43))
-* remove cache from git ([6c280fe](https://github.com/shaunoff/sprightly/commit/6c280fe14ae35bc0a03a0236cf6947af59aedcd2))
 
 
 ### Features
 
 * add basic gql-server ([8d68379](https://github.com/shaunoff/sprightly/commit/8d683790778e1a1ee0270ed774850168b967de99))
-
-
-
-
-
-# 0.1.0 (2021-01-31)
-
-
-### Features
-
-* initial webApp ([6db95c0](https://github.com/shaunoff/sprightly/commit/6db95c03e1d3f654cffbeaa5654cc5a756a0ad6b))

@@ -1,13 +1,13 @@
 {
   "name": "@sprightly/types",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "start":  "tsc -b . --watch --preserveWatchOutput && node",
+    "start": "tsc -b . --watch --preserveWatchOutput && node",
     "build": "tsc -b .",
     "test": "jest",
     "lint": "eslint",

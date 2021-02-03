@@ -1,5 +1,6 @@
 {
   "extends": "../tsconfig.settings.json",
+  "references": [{ "path": "../types" }],
   "compilerOptions": {
     "target": "ESNext",
     "module": "commonjs",

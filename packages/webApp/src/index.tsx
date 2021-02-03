@@ -1,4 +1,9 @@
 import React from 'react'
+import { Bread, Hello } from '@sprightly/types'
 import { render } from 'react-dom'
 
-render(<h1>wewewqewqewqeeeeeedddsssssssdsadsaHello World</h1>, document.getElementById('root'))
+const testy: Bread = {
+  names: 'fhdjhfjkd',
+  test: 'gfdhjgfdjhsgfjh',
+}
+render(<h1>{Hello}333333qewqeeeeeedddsssssssdsadsaHello World</h1>, document.getElementById('root'))

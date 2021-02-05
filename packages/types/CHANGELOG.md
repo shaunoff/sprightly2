@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/shaunoff/sprightly/compare/v0.1.0...v0.4.0) (2021-02-05)
+
+
+### Features
+
+* add types package ([#2](https://github.com/shaunoff/sprightly/issues/2)) ([04d764f](https://github.com/shaunoff/sprightly/commit/04d764fb03aae079b966028df4f723fefe858d3d))
+* add types to graphql server ([6f42d0c](https://github.com/shaunoff/sprightly/commit/6f42d0c1435ef5edae870fbd808e4505764fa1c0))
+
+
+
+
+
 # [0.3.0](https://github.com/shaunoff/sprightly/compare/v0.1.0...v0.3.0) (2021-02-03)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/web-app",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "> TODO: description",
   "author": "shaun Hutch",
   "homepage": "",
@@ -11,7 +11,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@sprightly/types": "^0.3.0",
+    "@sprightly/types": "^0.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

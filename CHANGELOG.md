@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/shaunoff/sprightly/compare/v0.4.0...v0.5.0) (2021-02-05)
+
+
+### Features
+
+* react native into monorepo ([ee79856](https://github.com/shaunoff/sprightly/commit/ee79856a96735e9c120a39cc78423460ac13052b))
+
+
+
+
+
 # [0.4.0](https://github.com/shaunoff/sprightly/compare/v0.1.0...v0.4.0) (2021-02-05)
 
 

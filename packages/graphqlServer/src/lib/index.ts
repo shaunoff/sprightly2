@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 //import UserModel from '../modules/user/models'
-import { User } from '../generated/graphql'
+import { User } from '@sprightly/types'
 // import { AuthenticationError } from 'apollo-server'
 const secret = 'shaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoff'
 

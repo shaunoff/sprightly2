@@ -13,6 +13,31 @@ export type Scalars = {
   Float: number;
 };
 
+export type Calendar = {
+  __typename?: 'Calendar';
+  day_id?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  day?: Maybe<Scalars['Int']>;
+  quarter?: Maybe<Scalars['Int']>;
+  day_of_week?: Maybe<Scalars['Int']>;
+  day_of_year?: Maybe<Scalars['Int']>;
+  week_of_year?: Maybe<Scalars['Int']>;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  date?: Maybe<Calendar>;
+  dates?: Maybe<Array<Maybe<Calendar>>>;
+  me?: Maybe<User>;
+  users?: Maybe<Array<Maybe<User>>>;
+};
+
+
+export type QueryMeArgs = {
+  id: Scalars['Int'];
+};
+
 export type LoginData = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -38,17 +63,6 @@ export type MutationSignUpArgs = {
 
 export type MutationSignInArgs = {
   data: LoginData;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  users?: Maybe<Array<Maybe<User>>>;
-  me?: Maybe<User>;
-};
-
-
-export type QueryMeArgs = {
-  id: Scalars['Int'];
 };
 
 export type User = {
@@ -142,12 +156,13 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  LoginData: LoginData;
+  Calendar: ResolverTypeWrapper<Calendar>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Query: ResolverTypeWrapper<{}>;
+  LoginData: LoginData;
   SignupData: SignupData;
   Mutation: ResolverTypeWrapper<{}>;
-  Query: ResolverTypeWrapper<{}>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   User: ResolverTypeWrapper<User>;
   Auth: ResolverTypeWrapper<Auth>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -155,25 +170,40 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  LoginData: LoginData;
+  Calendar: Calendar;
   String: Scalars['String'];
+  Int: Scalars['Int'];
+  Query: {};
+  LoginData: LoginData;
   SignupData: SignupData;
   Mutation: {};
-  Query: {};
-  Int: Scalars['Int'];
   User: User;
   Auth: Auth;
   Boolean: Scalars['Boolean'];
 };
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
-  signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
+export type CalendarResolvers<ContextType = any, ParentType extends ResolversParentTypes['Calendar'] = ResolversParentTypes['Calendar']> = {
+  day_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  month?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  day?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  quarter?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  day_of_week?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  day_of_year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  week_of_year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
+  date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
+  dates?: Resolver<Maybe<Array<Maybe<ResolversTypes['Calendar']>>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryMeArgs, 'id'>>;
+  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
+  signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -190,8 +220,9 @@ export type AuthResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
-  Mutation?: MutationResolvers<ContextType>;
+  Calendar?: CalendarResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   Auth?: AuthResolvers<ContextType>;
 };

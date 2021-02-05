@@ -1,15 +1,11 @@
-//import { UserProvider } from '../providers'
-import { MutationResolvers } from '../../../generated/graphql'
+import { MutationResolvers } from '@sprightly/types'
+import { RootContext } from 'modules/context'
 import { createToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
-//import { ExecutionContext } from 'graphql-modules'
-//import { mergeArguments } from '@graphql-tools/merge'
-//import { UserModule } from '..'
-//import { authenticated } from '../../../lib'
 import bcrypt from 'bcrypt'
 
 export const Mutation: MutationResolvers = {
-  signIn: async (_, { data }, { prisma }) => {
+  signIn: async (_, { data }, { prisma }: RootContext) => {
     const { email, password } = data
 
     const user = await prisma.user.findUnique({
@@ -34,7 +30,7 @@ export const Mutation: MutationResolvers = {
     }
   },
 
-  signUp: async (_, { data }, { prisma }) => {
+  signUp: async (_, { data }, { prisma }: RootContext) => {
     const existing = await prisma.user.findUnique({
       where: {
         email: data.email,

@@ -1,0 +1,10 @@
+type Calendar {
+  day_id: String
+  year: Int
+  month: Int
+  day: Int
+  quarter: Int
+  day_of_week: Int
+  day_of_year: Int
+  week_of_year: Int
+}

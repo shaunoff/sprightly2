@@ -16,3 +16,14 @@ model User {
   name     String?
   password String
 }
+
+model Calendar {
+  day_id       String @id
+  year         Int
+  month        Int
+  day          Int
+  quarter      Int
+  day_of_week  Int
+  day_of_year  Int
+  week_of_year Int
+}

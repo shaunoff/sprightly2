@@ -1,3 +1,2 @@
-export const Hello = 'class'
-
-export { Bread } from './types'
+export * from './generated/graphql'
+// export { Bread } from './types'

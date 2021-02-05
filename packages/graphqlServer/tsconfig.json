@@ -1,5 +1,6 @@
 {
   "extends": "../tsconfig.settings.json",
+  "references": [{ "path": "../types" }],
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -10,6 +11,7 @@
     "baseUrl": "./src",
     "noImplicitAny": true,
     "resolveJsonModule": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["node_modules/@sprightly/types"]
   }
 }

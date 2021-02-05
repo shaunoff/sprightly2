@@ -5,10 +5,10 @@
   "author": "shaun Hutch",
   "homepage": "",
   "license": "ISC",
-  "main": "src/index.html",
   "scripts": {
     "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html"
+    "build": "parcel build ./src/index.html --dist-dir dist",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@sprightly/types": "^0.3.0",

@@ -1,11 +1,3 @@
-# input NewUserData {
-#   password: String!
-#   email: String!
-#   firstName: String!
-#   lastName: String!
-#   avatar: String!
-# }
-
 input LoginData {
   email: String!
   password: String!

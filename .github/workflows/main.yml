@@ -7,8 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ test ]
-  pull_request:
-    branches: [ test ]
+  # pull_request:
+  #   branches: [ test ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,6 +41,8 @@ jobs:
       # Install node
       - name: Setup Node.js
         uses: actions/setup-node@v1
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
         with:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
@@ -55,8 +57,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Runs a single command using the runners shell
-      - name: Lerrna Test
-        run: yarn changed
+      - name: Lerna Publish
+        run: yarn publish
       - name: Lerna Version bump
         run: yarn version-bump
       # Runs a single command using the runners shell

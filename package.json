@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "version-bump": "lerna version --conventional-commits --yes",
+    "publish": "lerna publish --conventional-commits --yes",
     "changed": "lerna changed",
     "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",

@@ -41,11 +41,14 @@ jobs:
       # Install node
       - name: Setup Node.js
         uses: actions/setup-node@v1
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
         with:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
+      # NPM Login
+      - name: Login to NPM
+        run: npm login
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # Install dependencies
       - name: Install
         run: yarn install
@@ -56,6 +59,7 @@ jobs:
           git config --global user.email 'shaunoff@users.noreply.github.com'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       # Runs a single command using the runners shell
       - name: Lerna Publish
         run: yarn publish-packages

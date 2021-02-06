@@ -34,3 +34,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      # Install node
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://npm.pkg.github.com'
+      # Install dependencies
+      - name: Install
+        run: yarn install
+      # Login to GIT
+      - name: Git Identity
+        run: |
+          git config --global user.name 'shaunoff'
+          git config --global user.email 'shaunoff@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Runs a single command using the runners shell
+      - name: Complete so far!!!!
+        run: echo ioioioioiooioo!

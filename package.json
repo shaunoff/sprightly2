@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "version": "lerna version --conventional-commits",
     "changed": "lerna changed",
     "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",

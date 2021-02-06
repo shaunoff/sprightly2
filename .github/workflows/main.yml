@@ -25,8 +25,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          all_commits: true
-          all_tags: true
+          fetch-depth: "0"
+      # pulls all tags (needed for lerna / semantic release to correctly version)
+      - name: git fetch
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo gdhfsjgfjdsgfjhsdfhdsghj!

@@ -45,10 +45,10 @@ jobs:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
       # NPM Access test
-      - name: Create .npmrc file
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-        env:
-          NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # - name: Create .npmrc file
+      #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      #   env:
+      #     NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # Install dependencies
       - name: Install
         run: yarn install
@@ -60,9 +60,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+      # test npm
+      - name: whomai
+        run: npm whoami
+
       # Runs a single command using the runners shell
       - name: Lerna Publish
         run: yarn publish-packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       # - name: Lerna Version bump
       #   run: yarn version-bump
       # Runs a single command using the runners shell

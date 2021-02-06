@@ -46,7 +46,9 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       # NPM Access
       - name: Create .npmrc file
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{NPM_TOKEN}}" > .npmrc
+        env:
+          NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # Install dependencies
       - name: Install
         run: yarn install

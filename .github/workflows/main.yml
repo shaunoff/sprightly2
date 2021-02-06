@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
-      # NPM Login
+      # NPM Login test
       - name: Login to NPM
         run: npm login
         env:

@@ -61,8 +61,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       # test npm
-      - name: whomai
-        run: npm whoami
+      # - name: whomai
+      #   run: npm whoami
 
       # Runs a single command using the runners shell
       - name: Lerna Publish

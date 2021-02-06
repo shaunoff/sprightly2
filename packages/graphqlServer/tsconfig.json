@@ -11,7 +11,8 @@
     "baseUrl": "./src",
     "noImplicitAny": true,
     "resolveJsonModule": true,
-    "emitDecoratorMetadata": true,
-    "typeRoots": ["node_modules/@sprightly/types"]
-  }
+    "emitDecoratorMetadata": true
+    //"typeRoots": ["node_modules/@sprightly/types"],
+  },
+  "skipLibCheck": true
 }

@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Sprightly Package Release
 
 # Controls when the action will run. 
 on:
@@ -26,38 +26,33 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: "0"
+      
       # pulls all tags (needed for lerna / semantic release to correctly version)
-      - name: git fetch
+      - name: Fetch all git tags
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo gdhfsjgfjdsgfjhsdfhdsghj!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      
       # Install node
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: 'https://registry.npmjs.org/'
-          # scope: '@sprightly'
+      
       # NPM Access test
       - name: Create .npmrc file
         run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
         env:
           NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      - name: who ami
+      
+      - name: Test NPM login
         run: npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-
+      # Install dependencies
       - name: Install
         run: yarn install
+
       # Login to GIT
       - name: Git Identity
         run: |
@@ -70,12 +65,7 @@ jobs:
         run: yarn build
 
       # Runs a single command using the runners shell
-      - name: Lerna Publish
+      - name: Publish Packages to NPM
         run: yarn publish-packages
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      # - name: Lerna Version bump
-      #   run: yarn version-bump
-      # Runs a single command using the runners shell
-      - name: Complete so far!!!!
-        run: echo ioioioioiooioo!
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

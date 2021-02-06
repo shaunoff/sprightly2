@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/shaunoff/sprightly/compare/v0.7.8...v0.7.9) (2021-02-06)
+
+
+### Bug Fixes
+
+* fhkjdshjkfdshfjk ([a68070f](https://github.com/shaunoff/sprightly/commit/a68070f63ff0eac728f47586d34faf5fb42678ba))
+* fjhsdfjhsdkjfhj ([c32e7d0](https://github.com/shaunoff/sprightly/commit/c32e7d07390ba32e7ee8174b2d46342c0d94e7a5))
+* fsdkjghfjkshk ([afe79ac](https://github.com/shaunoff/sprightly/commit/afe79ac036e245ede268b48a4a95e2d3a55d0727))
+
+
+
+## 0.7.7 (2021-02-06)
+
+
+
+
+
 ## [0.7.8](https://github.com/shaunoff/sprightly/compare/v0.7.7...v0.7.8) (2021-02-06)
 
 

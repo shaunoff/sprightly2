@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11](https://github.com/shaunoff/sprightly/compare/v0.7.10...v0.7.11) (2021-02-06)
+
+
+### Bug Fixes
+
+* remove dummy types ([#7](https://github.com/shaunoff/sprightly/issues/7)) ([1622596](https://github.com/shaunoff/sprightly/commit/16225964a2c40f62bc75487370fd3975038bbf6e))
+
+
+
+
+
 ## [0.7.10](https://github.com/shaunoff/sprightly/compare/v0.6.0...v0.7.10) (2021-02-06)
 
 **Note:** Version bump only for package @sprightly/types

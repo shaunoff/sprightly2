@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/shaunoff/sprightly/compare/v0.6.0...v0.7.0) (2021-02-06)
+
+
+### Features
+
+* ci9 ([8ab198a](https://github.com/shaunoff/sprightly/commit/8ab198a0fd29ed3b104ce4978c279d369bd0f7da))
+
+
+
+
+
 # [0.6.0](https://github.com/shaunoff/sprightly/compare/v0.4.0...v0.6.0) (2021-02-05)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/shaunoff/sprightly/compare/v0.6.0...v0.7.0) (2021-02-06)
+
+
+### Features
+
+* ci testing ([6779f01](https://github.com/shaunoff/sprightly/commit/6779f012937ff22859dfe4c91b13f06c9cc00bd1))
+* ci testing2 ([5695f83](https://github.com/shaunoff/sprightly/commit/5695f8327c026908bf8fd9120a0a984b94a824e5))
+* ci10 ([805b8c5](https://github.com/shaunoff/sprightly/commit/805b8c508a32d82979ec0c1ba989651332967d42))
+* ci11 ([838a0de](https://github.com/shaunoff/sprightly/commit/838a0de1dca4ca5a7ad5520eb26501e1d39c7036))
+* ci12 ([a6afa12](https://github.com/shaunoff/sprightly/commit/a6afa12121975b0a7ce3b103e9ea8751c8b73ad5))
+* ci3 ([6efc26d](https://github.com/shaunoff/sprightly/commit/6efc26d3ccb57a12aa255a8eab4683e519f1f39e))
+* ci4 ([112f40b](https://github.com/shaunoff/sprightly/commit/112f40b707e926bf76190df6869c8480dfbfdb3f))
+* ci5 ([7caa2fc](https://github.com/shaunoff/sprightly/commit/7caa2fcbc80583ab199867f9668599a8f10192d9))
+* ci6 ([22e7fa4](https://github.com/shaunoff/sprightly/commit/22e7fa45f9e30bdd485084c8d9041ca246041c9c))
+* ci7 ([8814f78](https://github.com/shaunoff/sprightly/commit/8814f78bc11953c01297755dbd21a2dc01ea2ee9))
+* ci8 ([65346b0](https://github.com/shaunoff/sprightly/commit/65346b09912e4c4e4a535c3d57e75ece50293fd0))
+* ci9 ([8ab198a](https://github.com/shaunoff/sprightly/commit/8ab198a0fd29ed3b104ce4978c279d369bd0f7da))
+
+
+
+
+
 # [0.6.0](https://github.com/shaunoff/sprightly/compare/v0.4.0...v0.6.0) (2021-02-05)
 
 

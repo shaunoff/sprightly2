@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/native-app",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "__generated__/AppEntry.js",
   "scripts": {
     "postinstall": "expo-yarn-workspaces postinstall",

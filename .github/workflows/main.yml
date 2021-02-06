@@ -51,5 +51,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Runs a single command using the runners shell
+      - name: Lerrna Test
+        run: yarn changed
+      # Runs a single command using the runners shell
       - name: Complete so far!!!!
         run: echo ioioioioiooioo!

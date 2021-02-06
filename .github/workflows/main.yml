@@ -44,11 +44,9 @@ jobs:
         with:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
-      # NPM Login
-      - name: Login to NPM
-        run: npm login
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # NPM Access
+      - name: Create .npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
       # Install dependencies
       - name: Install
         run: yarn install

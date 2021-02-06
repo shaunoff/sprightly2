@@ -45,11 +45,16 @@ jobs:
           node-version: 12
           registry-url: 'https://registry.npmjs.org/'
           # scope: '@sprightly'
-      # # NPM Access test
-      # - name: Create .npmrc file
-      #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-      #   env:
-      #     NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # NPM Access test
+      - name: Create .npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+        env:
+          NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: who ami
+        run: yarn publish-packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
 
       - name: Install
         run: yarn install

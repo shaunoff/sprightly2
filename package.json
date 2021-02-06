@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "changed": "lerna changed --stream",
+    "changed": "lerna changed",
     "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",
     "test": "lerna run test --stream",

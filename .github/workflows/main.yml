@@ -64,7 +64,7 @@ jobs:
       - name: Lerna Build
         run: yarn build
 
-      # Runs a single command using the runners shell
+      # Publish packages
       - name: Publish Packages to NPM
         run: yarn publish-packages
         env:

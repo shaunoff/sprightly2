@@ -58,7 +58,7 @@ jobs:
       - name: Lerrna Test
         run: yarn changed
       - name: Lerna Version bump
-        run: yarn changed
+        run: yarn version
       # Runs a single command using the runners shell
       - name: Complete so far!!!!
         run: echo ioioioioiooioo!

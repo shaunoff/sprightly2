@@ -60,9 +60,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # test npm
-      # - name: whomai
-      #   run: npm whoami
+      - name: Lerna Build
+        run: yarn build
 
       # Runs a single command using the runners shell
       - name: Lerna Publish

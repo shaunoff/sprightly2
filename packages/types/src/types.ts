@@ -1,5 +1,5 @@
 /**
- * A simple bread interface thats not needed anymore
+ * A simple bread interface
  */
 export type Bread = {
   names: string

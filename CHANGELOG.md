@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.8.0) (2021-02-07)
+
+
+### Features
+
+* add web app deploy ([#8](https://github.com/shaunoff/sprightly/issues/8)) ([3b3770e](https://github.com/shaunoff/sprightly/commit/3b3770e3421e230491e620cdb2cf58a5331c60d3))
+
+
+
+
+
+## [0.7.12](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.7.12) (2021-02-07)
+
+
+### Bug Fixes
+
+* deploy test ([c3b07d7](https://github.com/shaunoff/sprightly/commit/c3b07d7520a4ee8906e03d49d35f89139795549e))
+* remove dummy types ([dcace0f](https://github.com/shaunoff/sprightly/commit/dcace0ff5e3c63387a0c89e3540fe048baa94edd))
+
+
+
+## 0.7.10 (2021-02-06)
+
+
+
+
+
 ## [0.7.11](https://github.com/shaunoff/sprightly/compare/v0.7.10...v0.7.11) (2021-02-06)
 
 

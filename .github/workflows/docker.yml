@@ -38,5 +38,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Test 2
           environment_name: Test2-env
+          version_label: 798798
           region: us-east-1
           deployment_package: Dockerrun.aws.json

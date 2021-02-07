@@ -11,7 +11,7 @@ RUN yarn install
 
 COPY . /usr/src/app
 
-RUN yarn build
+RUN yarn build:gql
 RUN npx prisma generate
 
 EXPOSE 4000

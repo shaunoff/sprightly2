@@ -24,8 +24,10 @@ jobs:
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
+        env:
+          DATABASE_URL: ${{ secrets.DOCKER_USERNAME }}
         with:
           name: shaunoff/graphql-server
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          dockerfile: packages/graphqlServer/Dockerfile
+          dockerfile: Dockerfile

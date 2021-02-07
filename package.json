@@ -8,7 +8,9 @@
     "publish-packages": "lerna publish --conventional-commits --yes",
     "changed": "lerna changed",
     "clean": "lerna run clean --stream",
+    "lint": "lerna run lint --stream",
     "build": "lerna run build --stream",
+    "build:gql": "lerna run build --scope=@sprightly/graphql-server --stream",
     "test": "lerna run test --stream",
     "start": "lerna run start --no-sort --stream"
   },

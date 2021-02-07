@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/shaunoff/sprightly/compare/v0.8.0...v0.8.2) (2021-02-07)
+
+
+### Bug Fixes
+
+* Add graphql-server CI ([#9](https://github.com/shaunoff/sprightly/issues/9)) ([7f38c08](https://github.com/shaunoff/sprightly/commit/7f38c08ccb6030ecd4b3b1ed3279f302fd81e84f))
+
+
+
+
+
+## [0.8.1](https://github.com/shaunoff/sprightly/compare/v0.8.0...v0.8.1) (2021-02-07)
+
+
+### Bug Fixes
+
+* docker for gql ([34d8f5f](https://github.com/shaunoff/sprightly/commit/34d8f5fc6b419fe88751c0acaf1ffe7140f0f499))
+* test2 hh ([1efebb0](https://github.com/shaunoff/sprightly/commit/1efebb0d1befb74cb5c612191e83bc132b5782d2))
+
+
+
+
+
 # [0.8.0](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.8.0) (2021-02-07)
 
 

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.12](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.7.12) (2021-02-07)
+
+
+### Bug Fixes
+
+* deploy test ([c3b07d7](https://github.com/shaunoff/sprightly/commit/c3b07d7520a4ee8906e03d49d35f89139795549e))
+
+
+
+## 0.7.10 (2021-02-06)
+
+
+
+
+
 ## [0.7.10](https://github.com/shaunoff/sprightly/compare/v0.6.0...v0.7.10) (2021-02-06)
 
 **Note:** Version bump only for package @sprightly/native-app

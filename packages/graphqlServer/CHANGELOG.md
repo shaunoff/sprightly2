@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.12](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.7.12) (2021-02-07)
+
+**Note:** Version bump only for package @sprightly/graphql-server
+
+
+
+
+
 ## [0.7.11](https://github.com/shaunoff/sprightly/compare/v0.7.10...v0.7.11) (2021-02-06)
 
 **Note:** Version bump only for package @sprightly/graphql-server

@@ -32,11 +32,11 @@ jobs:
       #     password: ${{ secrets.DOCKER_PASSWORD }}
       #     dockerfile: Dockerfile
       - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v14
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: Test 2
-        environment_name: Test2-env
-        region: us-east-1
-        deployment_package: Dockerrun.aws.json
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: Test 2
+          environment_name: Test2-env
+          region: us-east-1
+          deployment_package: Dockerrun.aws.json

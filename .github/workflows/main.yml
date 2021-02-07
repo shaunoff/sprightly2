@@ -81,7 +81,7 @@ jobs:
       - name: Get New App Version
         id: get-version
         run: |
-          versionValue=$(cat package.json | jq '.version')
+          versionValue=$(cat lerna.json | jq '.version')
           appVersion="${versionValue%\"}"
           appVersion="${appVersion#\"}"
           echo "::set-output name=app-version::$appVersion"

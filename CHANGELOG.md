@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/shaunoff/sprightly/compare/v0.8.0...v0.8.1) (2021-02-07)
+
+
+### Bug Fixes
+
+* docker deploy ([7337f37](https://github.com/shaunoff/sprightly/commit/7337f373992fde525499b85c89d81a68bdf6599a))
+* docker for gql ([34d8f5f](https://github.com/shaunoff/sprightly/commit/34d8f5fc6b419fe88751c0acaf1ffe7140f0f499))
+* fjkdhskjfhdjkfhfsdkjfh ([bfdb0dd](https://github.com/shaunoff/sprightly/commit/bfdb0dd30dae145dc0d21aca45fe0bea5a3ba314))
+* hgfdkjfghdfjghdfkj ([574546b](https://github.com/shaunoff/sprightly/commit/574546b1320f2c5a9fde2525dfe22cf5cd1e0788))
+* test2 hh ([1efebb0](https://github.com/shaunoff/sprightly/commit/1efebb0d1befb74cb5c612191e83bc132b5782d2))
+* testy ([f45bf8b](https://github.com/shaunoff/sprightly/commit/f45bf8b7a981284f871c53c5de8fa142d64ddbf0))
+* testy1 ([3fdd14a](https://github.com/shaunoff/sprightly/commit/3fdd14a86e2700b4b45eac197d0a35a44161b17e))
+* testy21 ([51db998](https://github.com/shaunoff/sprightly/commit/51db998e4bc920cc7c45d7ed2fc6373388492ed1))
+* utryeiuty ([598ecbf](https://github.com/shaunoff/sprightly/commit/598ecbf090f55faa69057195120b9e7490f7fac1))
+
+
+
+## [0.7.11](https://github.com/shaunoff/sprightly/compare/v0.7.10...v0.7.11) (2021-02-06)
+
+
+### Bug Fixes
+
+* remove dummy types ([dcace0f](https://github.com/shaunoff/sprightly/commit/dcace0ff5e3c63387a0c89e3540fe048baa94edd))
+
+
+
+## 0.7.10 (2021-02-06)
+
+
+
+
+
 # [0.8.0](https://github.com/shaunoff/sprightly/compare/v0.7.11...v0.8.0) (2021-02-07)
 
 

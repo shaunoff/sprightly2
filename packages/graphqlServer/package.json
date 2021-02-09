@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/graphql-server",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@graphql-codegen/typescript-operations": "^1.17.14",
-    "@sprightly/types": "^0.8.3",
+    "@sprightly/types": "^0.8.4",
     "apollo-datasource": "^0.7.2",
     "apollo-server": "^2.19.1",
     "graphql": "^15.4.0",

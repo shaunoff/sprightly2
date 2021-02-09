@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/shaunoff/sprightly/compare/v0.8.3...v0.8.4) (2021-02-09)
+
+
+### Bug Fixes
+
+* Setup ([#13](https://github.com/shaunoff/sprightly/issues/13)) ([4279a10](https://github.com/shaunoff/sprightly/commit/4279a10aefb78ca30a422ae682190413d66dfae1))
+
+
+
+
+
 ## [0.8.3](https://github.com/shaunoff/sprightly/compare/v0.8.2...v0.8.3) (2021-02-09)
 
 

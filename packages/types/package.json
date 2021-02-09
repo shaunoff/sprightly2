@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "tsc -b . --watch --preserveWatchOutput",
-    "build": "tsc -b .",
+    "build": "yarn clean && tsc -b .",
     "test": "jest",
     "lint": "eslint",
     "clean": "rimraf dist *.tsbuildinfo"

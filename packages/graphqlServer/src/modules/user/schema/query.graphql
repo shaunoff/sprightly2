@@ -2,3 +2,9 @@ type Query {
   users: [User]
   me(id: Int!): User
 }
+
+query {
+  users {
+    id
+  }
+}

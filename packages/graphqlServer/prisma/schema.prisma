@@ -27,3 +27,8 @@ model Calendar {
   day_of_year  Int
   week_of_year Int
 }
+
+model Event {
+  id String @id @default(uuid())
+
+}

@@ -1,5 +1,5 @@
 import { QueryResolvers } from '@sprightly/types'
-import { RootContext } from 'modules/context'
+import { RootContext } from '../../../modules/context'
 
 export const Query: QueryResolvers = {
   dates: async (_, __, { prisma }: RootContext) => {

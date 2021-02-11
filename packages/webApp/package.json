@@ -15,8 +15,8 @@
     "@sprightly/types": "^0.8.4",
     "graphql": "^15.5.0",
     "parcel": "2.0.0-nightly.574",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "private": true
 }

@@ -2,17 +2,11 @@
   "extends": "../tsconfig.settings.json",
   "references": [{ "path": "../types" }],
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "lib": ["es6"],
-    "allowJs": true,
+    "composite": true,
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": "./src",
-    "noImplicitAny": true,
-    "resolveJsonModule": true,
-    "emitDecoratorMetadata": true
-    //"typeRoots": ["node_modules/@sprightly/types"],
+    "lib": ["dom", "es2017"]
+    // "baseUrl": "./"
   },
-  "skipLibCheck": true
+  "include": ["src"]
 }

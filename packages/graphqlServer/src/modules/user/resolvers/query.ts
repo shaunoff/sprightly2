@@ -11,5 +11,5 @@
 //   },
 //   me: (root, args, { injector }: ExecutionContext) => {
 //     return injector.get(UserProvider).me(args)
-//   }
+//   },
 // }

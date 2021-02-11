@@ -1,5 +1,5 @@
 import { MutationResolvers } from '@sprightly/types'
-import { RootContext } from 'modules/context'
+import { RootContext } from '../../../modules/context'
 import { createToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
 import bcrypt from 'bcrypt'

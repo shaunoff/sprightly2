@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/shaunoff/sprightly/compare/v0.8.5...v0.8.6) (2021-02-11)
+
+
+### Bug Fixes
+
+* Parcel param ([#15](https://github.com/shaunoff/sprightly/issues/15)) ([659e317](https://github.com/shaunoff/sprightly/commit/659e3171c2eeb78e8302e584d2b8b0c39558e011))
+
+
+
+
+
 ## [0.8.5](https://github.com/shaunoff/sprightly/compare/v0.8.4...v0.8.5) (2021-02-11)
 
 **Note:** Version bump only for package sprightly

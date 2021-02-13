@@ -15,6 +15,7 @@ model User {
   email    String  @unique
   name     String?
   password String
+  Event    Event[]
 }
 
 model Calendar {
@@ -26,4 +27,26 @@ model Calendar {
   day_of_week  Int
   day_of_year  Int
   week_of_year Int
+}
+
+model Event {
+  eventId String   @id @default(uuid())
+  user    User     @relation(fields: [userId], references: [id])
+  userId  Int
+  Journal Journal?
+  Workout Workout?
+}
+
+model Journal {
+  id      String @id @default(uuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [eventId])
+  text    String
+}
+
+model Workout {
+  id      String @id @default(uuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [eventId])
+  text    String
 }

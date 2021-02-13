@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/shaunoff/sprightly/compare/v0.8.7...v0.9.0) (2021-02-13)
+
+
+### Features
+
+* db and auth connect ([#17](https://github.com/shaunoff/sprightly/issues/17)) ([d394aa4](https://github.com/shaunoff/sprightly/commit/d394aa4edc14aa9a63178ad627b8e5ca736e47e7))
+
+
+
+
+
 ## [0.8.5](https://github.com/shaunoff/sprightly/compare/v0.8.4...v0.8.5) (2021-02-11)
 
 **Note:** Version bump only for package @sprightly/types

@@ -8,3 +8,15 @@ type Calendar {
   day_of_year: Int
   week_of_year: Int
 }
+
+type Event {
+  eventId: ID!
+  userId: Int!
+  user: User
+  Journal: Journal
+}
+
+type Journal {
+  id: ID!
+  text: String
+}

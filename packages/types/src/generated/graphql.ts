@@ -53,6 +53,7 @@ export type SignupData = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createEvent: Event;
   signIn: Auth;
   signUp: Auth;
 };
@@ -78,6 +79,20 @@ export type Auth = {
   __typename?: 'Auth';
   token?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
+};
+
+export type Event = {
+  __typename?: 'Event';
+  eventId: Scalars['ID'];
+  userId: Scalars['Int'];
+  user?: Maybe<User>;
+  Journal?: Maybe<Journal>;
+};
+
+export type Journal = {
+  __typename?: 'Journal';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
 };
 
 export type GetTodayQueryVariables = Exact<{ [key: string]: never; }>;
@@ -213,6 +228,9 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
   Auth: ResolverTypeWrapper<Auth>;
+  Event: ResolverTypeWrapper<Event>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  Journal: ResolverTypeWrapper<Journal>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
@@ -227,6 +245,9 @@ export type ResolversParentTypes = {
   Mutation: {};
   User: User;
   Auth: Auth;
+  Event: Event;
+  ID: Scalars['ID'];
+  Journal: Journal;
   Boolean: Scalars['Boolean'];
 };
 
@@ -250,6 +271,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType>;
   signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
   signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
 };
@@ -267,12 +289,28 @@ export type AuthResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type EventResolvers<ContextType = any, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = {
+  eventId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  Journal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type JournalResolvers<ContextType = any, ParentType extends ResolversParentTypes['Journal'] = ResolversParentTypes['Journal']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Calendar?: CalendarResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   Auth?: AuthResolvers<ContextType>;
+  Event?: EventResolvers<ContextType>;
+  Journal?: JournalResolvers<ContextType>;
 };
 
 

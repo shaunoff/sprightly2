@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import AuthContext from './authContext'
 import { initialAuthState } from './authState'
 import { authReducer } from './authReducer'
-import { User } from '@sprightly/types'
+import { User, LoginInput } from '@sprightly/types'
 
 /**
  * The main configuration to instantiate the `AuthProvider`.
@@ -67,26 +67,34 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   /**
    * Login to return token and basic user information
    */
-  const login = async () => {
+  const login = async ({ email, password }: LoginInput) => {
+    console.log('fdhgsfhjdgfjhsdgfjhdgfjh', email, password)
     dispatch({ type: 'LOGIN_STARTED' })
+
+    const query = `mutation login($email: String!, $password: String!){
+      signIn(data: {email: $email, password: $password}){
+        token
+        user {
+          id
+          profile {
+            firstName,
+            lastName
+          }
+        }
+      } 
+    }`
+
     const response = await fetch('https://api.shaun-hutch.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `mutation {
-          signIn(data: {email: "shaunoff@gmail.com", password: "password"}){
-            token
-            user {
-              id
-              profile {
-                firstName,
-                lastName
-              }
-            }
-          } 
-        }`,
+        query,
+        variables: {
+          email,
+          password,
+        },
       }),
     })
 

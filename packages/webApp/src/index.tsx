@@ -6,7 +6,6 @@ import { AuthProvider } from './auth'
 
 render(
   <div>
-    <div>Hello</div>
     <AuthProvider>
       <AuthorizedApolloProvider>
         <App />

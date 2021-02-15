@@ -1,4 +1,4 @@
-import { MutationResolvers, User as User1 } from '@sprightly/types'
+import { MutationResolvers } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
 import { createToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'

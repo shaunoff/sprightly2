@@ -30,6 +30,13 @@ export type Event = {
   eventId: Scalars['ID'];
   userId?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
+  journal?: Maybe<Journal>;
+};
+
+export type Journal = {
+  __typename?: 'Journal';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
@@ -182,6 +189,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Event: ResolverTypeWrapper<Event>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  Journal: ResolverTypeWrapper<Journal>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   LoginInput: LoginInput;
@@ -200,6 +208,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int'];
   Event: Event;
   ID: Scalars['ID'];
+  Journal: Journal;
   Mutation: {};
   Query: {};
   LoginInput: LoginInput;
@@ -227,6 +236,13 @@ export type EventResolvers<ContextType = any, ParentType extends ResolversParent
   eventId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  journal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type JournalResolvers<ContextType = any, ParentType extends ResolversParentTypes['Journal'] = ResolversParentTypes['Journal']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -267,6 +283,7 @@ export type AuthResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   Calendar?: CalendarResolvers<ContextType>;
   Event?: EventResolvers<ContextType>;
+  Journal?: JournalResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

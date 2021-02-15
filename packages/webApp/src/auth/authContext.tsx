@@ -1,5 +1,6 @@
 import { createContext } from 'react'
 import { AuthState, initialAuthState } from './authState'
+import { User } from '@sprightly/types'
 
 export interface AuthContextInterface extends AuthState {
   /**
@@ -10,7 +11,7 @@ export interface AuthContextInterface extends AuthState {
   /**
    * Returns all claims from the id_token if available.
    */
-  getIdTokenClaims: () => Promise<string>
+  getIdTokenClaims: (token: string) => User | null
 
   /**
    * possibly  needed

@@ -14,9 +14,6 @@ input ProfileInput {
   lastName: String!
 }
 
-
-
-
 type Mutation {
   signUp(data: SignupInput!): Auth!
   signIn(data: LoginInput!): Auth!

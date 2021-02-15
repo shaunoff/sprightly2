@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
         type: 'GET_TOKEN_COMPLETE',
         payload: {
           token,
-          user: getIdTokenClaims(token),
+          user: getIdTokenClaims(token || ''),
         },
       })
     } catch (error) {
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
    */
   const login = async () => {
     dispatch({ type: 'LOGIN_STARTED' })
-    const response = await fetch('http://localhost:4000', {
+    const response = await fetch('https://api.shaun-hutch.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

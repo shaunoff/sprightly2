@@ -12,12 +12,12 @@ type Action =
   | { type: 'GET_TOKEN' }
   | {
       type: 'GET_TOKEN_COMPLETE'
-      payload: { token: string | null }
+      payload: { token: string | null; user: User | null }
     }
   | { type: 'GET_TOKEN_ERROR'; error: Error }
 
 /**
- * Handles how that state changes in the `useAuth` hook.
+ * Handles how the state changes in the `useAuth` hook.
  */
 export const authReducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
@@ -31,6 +31,7 @@ export const authReducer = (state: AuthState, action: Action): AuthState => {
         ...state,
         isAuthenticated: !!action.payload.token,
         token: action.payload.token,
+        user: action.payload.user,
         isLoading: false,
         error: undefined,
       }
@@ -58,7 +59,7 @@ export const authReducer = (state: AuthState, action: Action): AuthState => {
       return {
         ...state,
         isAuthenticated: false,
-        user: undefined,
+        user: null,
         token: null,
       }
     case 'LOGIN_ERROR':

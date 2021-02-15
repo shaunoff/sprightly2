@@ -11,12 +11,21 @@ generator client {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       String  @id @default(uuid())
   email    String  @unique
-  name     String?
   password String
-  Event    Event[]
+  profile  Profile?
+  events    Event[]
 }
+
+model Profile {
+  id String @id @default(uuid())
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  firstName String
+  lastName String
+}
+
 
 model Calendar {
   day_id       String @id
@@ -32,9 +41,9 @@ model Calendar {
 model Event {
   eventId String   @id @default(uuid())
   user    User     @relation(fields: [userId], references: [id])
-  userId  Int
-  Journal Journal?
-  Workout Workout?
+  userId  String
+  journal Journal?
+  workout Workout?
 }
 
 model Journal {

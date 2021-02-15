@@ -11,9 +11,9 @@ type Calendar {
 
 type Event {
   eventId: ID!
-  userId: Int!
+  userId: String
   user: User
-  Journal: Journal
+  journal: Journal
 }
 
 type Journal {

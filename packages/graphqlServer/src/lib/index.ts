@@ -1,14 +1,15 @@
 import jwt from 'jsonwebtoken'
 //import UserModel from '../modules/user/models'
-import { User } from '@sprightly/types'
+import { User, exclude } from '@sprightly/types'
 // import { AuthenticationError } from 'apollo-server'
 const secret = 'shaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoff'
 
-export const createToken = (user: User): string =>
+export const createToken = ({ id, email, profile }: User): string =>
   jwt.sign(
     {
-      ...user,
-      'https://hasura.io/jwt/claims': { 'x-hasura-default-role': 'admin', 'x-hasura-allowed-roles': ['admin', 'user'] },
+      id,
+      email,
+      profile: profile && exclude(profile, ['id', 'userId']),
     },
     secret,
     {

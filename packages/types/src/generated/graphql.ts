@@ -1,6 +1,4 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -17,14 +15,45 @@ export type Scalars = {
 
 export type Calendar = {
   __typename?: 'Calendar';
-  day?: Maybe<Scalars['Int']>;
   day_id?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  day?: Maybe<Scalars['Int']>;
+  quarter?: Maybe<Scalars['Int']>;
   day_of_week?: Maybe<Scalars['Int']>;
   day_of_year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
-  quarter?: Maybe<Scalars['Int']>;
   week_of_year?: Maybe<Scalars['Int']>;
-  year?: Maybe<Scalars['Int']>;
+};
+
+export type Event = {
+  __typename?: 'Event';
+  eventId: Scalars['ID'];
+  userId?: Maybe<Scalars['String']>;
+  user?: Maybe<User>;
+  journal?: Maybe<Journal>;
+};
+
+export type Journal = {
+  __typename?: 'Journal';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createEvent: Event;
+  signIn: Auth;
+  signUp: Auth;
+};
+
+
+export type MutationSignInArgs = {
+  data: LoginInput;
+};
+
+
+export type MutationSignUpArgs = {
+  data: SignupInput;
 };
 
 export type Query = {
@@ -40,107 +69,43 @@ export type QueryMeArgs = {
   id: Scalars['Int'];
 };
 
-export type LoginData = {
+export type LoginInput = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-export type SignupData = {
+export type SignupInput = {
   email: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
+  profile: ProfileInput;
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createEvent: Event;
-  signIn: Auth;
-  signUp: Auth;
-};
-
-
-export type MutationSignInArgs = {
-  data: LoginData;
-};
-
-
-export type MutationSignUpArgs = {
-  data: SignupData;
+export type ProfileInput = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
 };
 
 export type User = {
   __typename?: 'User';
-  email: Scalars['String'];
-  id: Scalars['Int'];
-  name?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  email?: Maybe<Scalars['String']>;
+  profile?: Maybe<Profile>;
+};
+
+export type Profile = {
+  __typename?: 'Profile';
+  id?: Maybe<Scalars['ID']>;
+  userId?: Maybe<Scalars['ID']>;
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
 };
 
 export type Auth = {
   __typename?: 'Auth';
+  user?: Maybe<User>;
   token?: Maybe<Scalars['String']>;
-  user?: Maybe<User>;
 };
 
-export type Event = {
-  __typename?: 'Event';
-  eventId: Scalars['ID'];
-  userId: Scalars['Int'];
-  user?: Maybe<User>;
-  Journal?: Maybe<Journal>;
-};
-
-export type Journal = {
-  __typename?: 'Journal';
-  id: Scalars['ID'];
-  text?: Maybe<Scalars['String']>;
-};
-
-export type GetTodayQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetTodayQuery = (
-  { __typename?: 'Query' }
-  & { date?: Maybe<(
-    { __typename?: 'Calendar' }
-    & Pick<Calendar, 'day' | 'month' | 'week_of_year'>
-  )> }
-);
-
-
-export const GetTodayDocument = gql`
-    query getToday {
-  date {
-    day
-    month
-    week_of_year
-  }
-}
-    `;
-
-/**
- * __useGetTodayQuery__
- *
- * To run a query within a React component, call `useGetTodayQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetTodayQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetTodayQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetTodayQuery(baseOptions?: Apollo.QueryHookOptions<GetTodayQuery, GetTodayQueryVariables>) {
-        return Apollo.useQuery<GetTodayQuery, GetTodayQueryVariables>(GetTodayDocument, baseOptions);
-      }
-export function useGetTodayLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTodayQuery, GetTodayQueryVariables>) {
-          return Apollo.useLazyQuery<GetTodayQuery, GetTodayQueryVariables>(GetTodayDocument, baseOptions);
-        }
-export type GetTodayQueryHookResult = ReturnType<typeof useGetTodayQuery>;
-export type GetTodayLazyQueryHookResult = ReturnType<typeof useGetTodayLazyQuery>;
-export type GetTodayQueryResult = Apollo.QueryResult<GetTodayQuery, GetTodayQueryVariables>;
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -220,80 +185,58 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Calendar: ResolverTypeWrapper<Calendar>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Query: ResolverTypeWrapper<{}>;
-  LoginData: LoginData;
-  SignupData: SignupData;
-  Mutation: ResolverTypeWrapper<{}>;
-  User: ResolverTypeWrapper<User>;
-  Auth: ResolverTypeWrapper<Auth>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Event: ResolverTypeWrapper<Event>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Journal: ResolverTypeWrapper<Journal>;
+  Mutation: ResolverTypeWrapper<{}>;
+  Query: ResolverTypeWrapper<{}>;
+  LoginInput: LoginInput;
+  SignupInput: SignupInput;
+  ProfileInput: ProfileInput;
+  User: ResolverTypeWrapper<User>;
+  Profile: ResolverTypeWrapper<Profile>;
+  Auth: ResolverTypeWrapper<Auth>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Calendar: Calendar;
-  Int: Scalars['Int'];
   String: Scalars['String'];
-  Query: {};
-  LoginData: LoginData;
-  SignupData: SignupData;
-  Mutation: {};
-  User: User;
-  Auth: Auth;
+  Int: Scalars['Int'];
   Event: Event;
   ID: Scalars['ID'];
   Journal: Journal;
+  Mutation: {};
+  Query: {};
+  LoginInput: LoginInput;
+  SignupInput: SignupInput;
+  ProfileInput: ProfileInput;
+  User: User;
+  Profile: Profile;
+  Auth: Auth;
   Boolean: Scalars['Boolean'];
 };
 
 export type CalendarResolvers<ContextType = any, ParentType extends ResolversParentTypes['Calendar'] = ResolversParentTypes['Calendar']> = {
-  day?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   day_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  month?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  day?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  quarter?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   day_of_week?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   day_of_year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  month?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  quarter?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   week_of_year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
-  dates?: Resolver<Maybe<Array<Maybe<ResolversTypes['Calendar']>>>, ParentType, ContextType>;
-  me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryMeArgs, 'id'>>;
-  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
-};
-
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType>;
-  signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
-  signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
-};
-
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type AuthResolvers<ContextType = any, ParentType extends ResolversParentTypes['Auth'] = ResolversParentTypes['Auth']> = {
-  token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type EventResolvers<ContextType = any, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = {
   eventId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  Journal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType>;
+  journal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -303,14 +246,49 @@ export type JournalResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType>;
+  signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
+  signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
+  dates?: Resolver<Maybe<Array<Maybe<ResolversTypes['Calendar']>>>, ParentType, ContextType>;
+  me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryMeArgs, 'id'>>;
+  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
+};
+
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  profile?: Resolver<Maybe<ResolversTypes['Profile']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ProfileResolvers<ContextType = any, ParentType extends ResolversParentTypes['Profile'] = ResolversParentTypes['Profile']> = {
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  firstName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  lastName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type AuthResolvers<ContextType = any, ParentType extends ResolversParentTypes['Auth'] = ResolversParentTypes['Auth']> = {
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Calendar?: CalendarResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
-  User?: UserResolvers<ContextType>;
-  Auth?: AuthResolvers<ContextType>;
   Event?: EventResolvers<ContextType>;
   Journal?: JournalResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
+  Profile?: ProfileResolvers<ContextType>;
+  Auth?: AuthResolvers<ContextType>;
 };
 
 

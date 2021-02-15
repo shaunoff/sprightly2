@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import jwt from 'jsonwebtoken'
 import AuthContext from './authContext'
 import { initialAuthState } from './authState'
 import { authReducer } from './authReducer'
@@ -38,6 +39,7 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
         type: 'GET_TOKEN_COMPLETE',
         payload: {
           token,
+          user: getIdTokenClaims(token || ''),
         },
       })
     } catch (error) {
@@ -49,9 +51,18 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   }
 
   /**
-   * TODO: Get custom claims from the token
+   * Get user information from token
    */
-  const getIdTokenClaims = async () => 'claims'
+  const getIdTokenClaims = (token: string): User | null => {
+    const decoded = jwt.decode(token)
+    if (!decoded || typeof decoded === 'string') return null
+    const { id, email, profile } = decoded
+    return {
+      id,
+      email,
+      profile,
+    }
+  }
 
   /**
    * Login to return token and basic user information
@@ -68,7 +79,11 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
           signIn(data: {email: "shaunoff@gmail.com", password: "password"}){
             token
             user {
-              name
+              id
+              profile {
+                firstName,
+                lastName
+              }
             }
           } 
         }`,

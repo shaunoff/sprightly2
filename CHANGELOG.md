@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/shaunoff/sprightly/compare/v0.10.0...v0.11.0) (2021-02-15)
+
+
+### Features
+
+* simple login ([#23](https://github.com/shaunoff/sprightly/issues/23)) ([219c514](https://github.com/shaunoff/sprightly/commit/219c514c056b9d47be20a024d0bcb74fc1171fce))
+
+
+
+
+
 # [0.10.0](https://github.com/shaunoff/sprightly/compare/v0.9.0...v0.10.0) (2021-02-15)
 
 

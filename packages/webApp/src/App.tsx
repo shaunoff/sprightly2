@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { GetTodayQuery } from '@sprightly/types'
+import Login from './auth/Login'
 import { useAuth } from './auth'
 
 const GET_TODAY = gql`
@@ -16,7 +17,7 @@ const GET_TODAY = gql`
 const App: React.FC = () => {
   const { login, logout, isAuthenticated, user } = useAuth()
   console.log(user)
-  if (!isAuthenticated) return <button onClick={login}>nono</button>
+  if (!isAuthenticated) return <Login />
   const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
   if (loading || !data) return <div>loading</div>
   return (

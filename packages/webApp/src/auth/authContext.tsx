@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 import { AuthState, initialAuthState } from './authState'
-import { User } from '@sprightly/types'
+import { LoginInput, User } from '@sprightly/types'
 
 export interface AuthContextInterface extends AuthState {
   /**
@@ -16,7 +16,7 @@ export interface AuthContextInterface extends AuthState {
   /**
    * possibly  needed
    */
-  login: () => Promise<void>
+  login: (loginData: LoginInput) => Promise<void>
 
   /**
    * Clears the application session

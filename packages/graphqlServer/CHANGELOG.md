@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/shaunoff/sprightly/compare/v0.9.0...v0.10.0) (2021-02-15)
+
+
+### Features
+
+* user jwt ([#21](https://github.com/shaunoff/sprightly/issues/21)) ([a64ccd9](https://github.com/shaunoff/sprightly/commit/a64ccd95fe38fd72cae269b43f854328dfd84d35))
+
+
+
+
+
 # [0.9.0](https://github.com/shaunoff/sprightly/compare/v0.8.7...v0.9.0) (2021-02-13)
 
 

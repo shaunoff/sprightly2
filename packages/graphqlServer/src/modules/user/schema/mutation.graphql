@@ -1,15 +1,23 @@
-input LoginData {
+input LoginInput {
   email: String!
   password: String!
 }
 
-input SignupData {
+input SignupInput {
   email: String!
   password: String!
-  name: String!
+  profile: ProfileInput!
 }
+
+input ProfileInput {
+  firstName: String!
+  lastName: String!
+}
+
+
+
 
 type Mutation {
-  signUp(data: SignupData!): Auth!
-  signIn(data: LoginData!): Auth!
+  signUp(data: SignupInput!): Auth!
+  signIn(data: LoginInput!): Auth!
 }

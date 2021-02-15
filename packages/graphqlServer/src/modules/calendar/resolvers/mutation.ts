@@ -4,9 +4,9 @@ import { RootContext } from '../../../modules/context'
 export const Mutation: MutationResolvers = {
   createEvent: async (_, __, { prisma }: RootContext) => {
     const event = prisma.event.create({
-      data: { userId: 1, Journal: { create: { text: 'gfdjhsgfhfgjhdsgjfh' } } },
+      data: { userId: 'gghjadgjhasgdjhas', journal: { create: { text: 'gfdjhsgfhfgjhdsgjfh' } } },
       include: {
-        Journal: true,
+        journal: true,
       },
     })
     console.log(event)

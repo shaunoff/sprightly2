@@ -11,12 +11,12 @@ type Calendar {
 
 type Event {
   eventId: ID!
-  userId: Int!
+  userId: String
   user: User
-  Journal: Journal
+  # journal: Journal
 }
 
-type Journal {
-  id: ID!
-  text: String
-}
+# type Journal {
+#   id: ID!
+#   text: String
+# }

@@ -14,13 +14,14 @@ const GET_TODAY = gql`
 `
 
 const App: React.FC = () => {
-  const { login, logout, isAuthenticated } = useAuth()
-
+  const { login, logout, isAuthenticated, user } = useAuth()
+  console.log(user)
   if (!isAuthenticated) return <button onClick={login}>nono</button>
   const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
   if (loading || !data) return <div>loading</div>
   return (
     <div>
+      Hello {user?.profile?.firstName}
       {data.date?.week_of_year}
       <button onClick={logout}>logout</button>
     </div>

@@ -1,4 +1,4 @@
-import { MutationResolvers } from '@sprightly/types'
+import { MutationResolvers, User as User1 } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
 import { createToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
@@ -12,6 +12,9 @@ export const Mutation: MutationResolvers = {
       where: {
         email,
       },
+      include: {
+        profile: true,
+      },
     })
     if (!user) {
       throw new AuthenticationError('No user found')
@@ -22,6 +25,7 @@ export const Mutation: MutationResolvers = {
     if (!passwordMatch) {
       throw new Error('Invalid Password')
     }
+
     const token = createToken(user)
 
     return {
@@ -44,8 +48,17 @@ export const Mutation: MutationResolvers = {
     const password = await bcrypt.hash(data.password, 10)
     data.password = password
 
+    const dbData = {
+      ...data,
+      profile: {
+        create: data.profile,
+      },
+    }
     const user = await prisma.user.create({
-      data,
+      data: dbData,
+      include: {
+        profile: true,
+      },
     })
 
     const token = createToken(user)

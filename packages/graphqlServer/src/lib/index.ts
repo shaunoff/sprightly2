@@ -4,7 +4,7 @@ import { User, exclude } from '@sprightly/types'
 // import { AuthenticationError } from 'apollo-server'
 const secret = 'shaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoff'
 
-export const createToken = ({ id, email, profile }: User): string =>
+export const createAccessToken = ({ id, email, profile }: User): string =>
   jwt.sign(
     {
       id,
@@ -14,9 +14,41 @@ export const createToken = ({ id, email, profile }: User): string =>
     secret,
     {
       algorithm: 'HS256',
-      expiresIn: 360000,
+      expiresIn: 1000,
     },
   )
+
+export const validRefreshToken = (token: string): boolean => {
+  try {
+    jwt.verify(token, secret)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+export const createRefreshToken = (id: string): string =>
+  jwt.sign(
+    {
+      id,
+    },
+    secret,
+    {
+      algorithm: 'HS256',
+      expiresIn: 2000000000,
+    },
+  )
+
+export const decodeRefreshToken = (token: string): string | undefined => {
+  try {
+    const decoded = jwt.verify(token, secret)
+    if (!decoded || typeof decoded === 'string') return
+    const { id }: { id?: string } = { ...decoded }
+    return id
+  } catch (e) {
+    return
+  }
+}
 
 // export const userFromToken = async (token = ''): Promise<User | undefined> => {
 //   try {

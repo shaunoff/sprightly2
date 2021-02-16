@@ -11,8 +11,8 @@ interface AuthorizedApolloProviderProps {
 const AuthorizedApolloProvider: React.FC<AuthorizedApolloProviderProps> = ({
   children,
 }: AuthorizedApolloProviderProps): JSX.Element => {
-  const { isLoading, isAuthenticated, token, getAccessToken } = useAuth()
-  console.log(isLoading, isAuthenticated)
+  const { isLoading, accessToken, getAccessToken } = useAuth()
+
   useEffect(() => {
     getAccessToken()
   }, [])
@@ -26,7 +26,7 @@ const AuthorizedApolloProvider: React.FC<AuthorizedApolloProviderProps> = ({
   const authLink = setContext(async () => {
     return {
       headers: {
-        Authorization: token,
+        Authorization: accessToken,
       },
     }
   })

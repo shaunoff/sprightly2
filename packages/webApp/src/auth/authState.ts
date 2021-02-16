@@ -8,7 +8,7 @@ export interface AuthState {
   isAuthenticated: boolean
   isLoading: boolean
   user: User | null
-  token: string | null
+  accessToken: string | null
 }
 
 /**
@@ -17,6 +17,6 @@ export interface AuthState {
 export const initialAuthState: AuthState = {
   isAuthenticated: false,
   isLoading: true,
-  token: null,
+  accessToken: null,
   user: null,
 }

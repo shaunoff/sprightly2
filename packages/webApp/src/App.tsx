@@ -1,32 +1,22 @@
-import React from 'react'
-import { useQuery, gql } from '@apollo/client'
-import { GetTodayQuery } from '@sprightly/types'
+import React, { memo } from 'react'
 import Login from './auth/Login'
 import { useAuth } from './auth'
-
-const GET_TODAY = gql`
-  query getToday {
-    date {
-      day
-      month
-      week_of_year
-    }
-  }
-`
+import Date from './components/Date'
 
 const App: React.FC = () => {
-  const { login, logout, isAuthenticated, user } = useAuth()
-  console.log(user)
+  const { logout, isAuthenticated, user } = useAuth()
+
   if (!isAuthenticated) return <Login />
-  const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
-  if (loading || !data) return <div>loading</div>
+  // const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
+  // console.log('loading', loading)
+  //if (loading || !data) return <h1>loading</h1>
   return (
     <div>
       Hello {user?.profile?.firstName}
-      {data.date?.week_of_year}
+      <Date />
       <button onClick={logout}>logout</button>
     </div>
   )
 }
 
-export default App
+export default memo(App)

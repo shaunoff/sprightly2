@@ -1,11 +1,13 @@
-import { MutationResolvers } from '@sprightly/types'
+import { MutationResolvers, MutationSignInArgs, SignupInput } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
 import { validRefreshToken, createAccessToken, createRefreshToken, decodeRefreshToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
 import bcrypt from 'bcrypt'
+// use directives instead of this
+//import { authenticated } from '../../../lib'
 
 export const Mutation: MutationResolvers = {
-  signIn: async (_, { data }, { prisma }: RootContext) => {
+  signIn: async (_, { data }: MutationSignInArgs, { prisma }: RootContext, info) => {
     const { email, password } = data
 
     //Get user from database

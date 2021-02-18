@@ -1,16 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
-import AuthorizedApolloProvider from './config/AuthorizedApolloProvider'
+import { ApolloProvider } from '@apollo/client'
 import { AuthProvider } from './auth'
+import { apolloClient } from './config/apolloClient'
 
 render(
   <div>
-    <AuthProvider>
-      <AuthorizedApolloProvider>
+    <ApolloProvider client={apolloClient()}>
+      <AuthProvider>
         <App />
-      </AuthorizedApolloProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ApolloProvider>
   </div>,
   document.getElementById('root'),
 )

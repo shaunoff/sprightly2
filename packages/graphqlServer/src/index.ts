@@ -1,8 +1,8 @@
 import { ApolloServer } from 'apollo-server'
-// import { application } from './modules'
+import { User } from '@sprightly/types'
 import { ExpressContext, RootContext } from './modules/context'
 import { resolvers, typeDefs } from './modules'
-// const { createToken, getUserFromToken } = require('./auth')
+import { userFromToken } from './lib'
 
 //Prisma Imports
 import { PrismaClient } from '@prisma/client'
@@ -12,9 +12,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async (expressContext: ExpressContext): Promise<RootContext> => {
-    const token = expressContext.req?.headers?.authorization
-    // const user = await userFromToken(token)
-    return { ...expressContext, prisma, token }
+    const accessToken = expressContext.req?.headers?.authorization
+    const user = await userFromToken(accessToken, prisma)
+    return { ...expressContext, prisma, accessToken, user }
   },
   cors: {
     origin: '*',

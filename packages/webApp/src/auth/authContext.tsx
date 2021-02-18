@@ -11,7 +11,7 @@ export interface AuthContextInterface extends AuthState {
   /**
    * Returns all claims from the id_token if available.
    */
-  getIdTokenClaims: (token: string) => User | null
+  getAccessTokenClaims: (accessToken: string) => User | null
 
   /**
    * possibly  needed
@@ -31,7 +31,7 @@ const stub = (): never => {
 const initialContext: AuthContextInterface = {
   ...initialAuthState,
   getAccessToken: stub,
-  getIdTokenClaims: stub,
+  getAccessTokenClaims: stub,
   login: stub,
   logout: stub,
 }

@@ -1,9 +1,11 @@
 import React, { useReducer } from 'react'
+import { gql, useMutation } from '@apollo/client'
 import jwt from 'jsonwebtoken'
 import AuthContext from './authContext'
 import { initialAuthState } from './authState'
 import { authReducer } from './authReducer'
-import { User, LoginInput } from '@sprightly/types'
+import { User, LoginInput, Auth } from '@sprightly/types'
+import { accessTokenRef } from '../config/apolloClient'
 
 /**
  * The main configuration to instantiate the `AuthProvider`.
@@ -15,37 +17,96 @@ export interface AuthProviderOptions {
   children?: React.ReactNode
 }
 
-type JSONResponse = {
-  data?: {
-    signIn: {
-      token: string
-      user: User
+const GET_ACCESS_TOKEN = gql`
+  mutation getAccessToken($refreshToken: String!) {
+    getAccessToken(refreshToken: $refreshToken) {
+      accessToken
+      refreshToken
+      user {
+        id
+        profile {
+          firstName
+          lastName
+        }
+      }
     }
   }
-  errors?: Array<{ message: string }>
-}
+`
+const SIGN_IN = gql`
+  mutation signIn($email: String!, $password: String!) {
+    signIn(data: { email: $email, password: $password }) {
+      accessToken
+      refreshToken
+      user {
+        id
+        profile {
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+`
 
 const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
+  const [newAccessToken] = useMutation(GET_ACCESS_TOKEN)
+  const [signIn] = useMutation(SIGN_IN)
 
   /**
-   * Attempt to get access token from local storage
+   * Get access accessToken from refreshToken. If it is an initial
+   * request, we need a loading state before the user is authenticated.
+   * Subseuqent queries are triggered silently and skip the loading phase.
    */
-  const getAccessToken = async () => {
+  const getAccessToken = async (silently = false) => {
+    if (!silently) {
+      dispatch({ type: 'GET_ACCESS_TOKEN' })
+    }
+
+    const refreshToken = localStorage.getItem('refreshToken')
+
+    /**
+     * If there is no refresh token stored,  return  due to a logged out state.
+     */
+    if (!refreshToken) {
+      return dispatch({
+        type: 'NO_REFRESH_TOKEN',
+      })
+    }
+
+    /**
+     * Use refreshToken to get a new accessToken. The api will check if the reresh token is valid.
+     */
     try {
-      dispatch({ type: 'GET_TOKEN' })
-      const token = localStorage.getItem('userToken')
-      dispatch({
-        type: 'GET_TOKEN_COMPLETE',
-        payload: {
-          token,
-          user: getIdTokenClaims(token || ''),
+      const { data } = await newAccessToken({
+        variables: {
+          refreshToken,
         },
       })
-    } catch (error) {
-      dispatch({
-        type: 'GET_TOKEN_ERROR',
-        error,
+      /**
+       * If valid, a new accessToken will be obtained and can be store
+       * in authState and added to the apollo client to be used in the
+       * header of subsequent api requests
+       */
+      localStorage.setItem('refreshToken', data.getAccessToken.refreshToken)
+      accessTokenRef.current = data.getAccessToken.accessToken
+      /**
+       * Start timer to get new access token before it expires
+       */
+      refreshTokenCounter()
+      return dispatch({
+        type: 'LOGIN_COMPLETE',
+        payload: {
+          accessToken: data.getAccessToken.accessToken,
+          user: data.getAccessToken.user,
+        },
+      })
+    } catch (e) {
+      /**
+       * Invalid refresh token or it has been revoked. Return to unauth state
+       */
+      return dispatch({
+        type: 'NO_REFRESH_TOKEN',
       })
     }
   }
@@ -53,8 +114,8 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   /**
    * Get user information from token
    */
-  const getIdTokenClaims = (token: string): User | null => {
-    const decoded = jwt.decode(token)
+  const getAccessTokenClaims = (accessToken: string): User | null => {
+    const decoded = jwt.decode(accessToken)
     if (!decoded || typeof decoded === 'string') return null
     const { id, email, profile } = decoded
     return {
@@ -68,65 +129,62 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
    * Login to return token and basic user information
    */
   const login = async ({ email, password }: LoginInput) => {
-    console.log('fdhgsfhjdgfjhsdgfjhdgfjh', email, password)
     dispatch({ type: 'LOGIN_STARTED' })
 
-    const query = `mutation login($email: String!, $password: String!){
-      signIn(data: {email: $email, password: $password}){
-        token
-        user {
-          id
-          profile {
-            firstName,
-            lastName
-          }
-        }
-      } 
-    }`
-
-    const response = await fetch('https://api.shaun-hutch.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query,
+    try {
+      const { data } = await signIn({
         variables: {
           email,
           password,
         },
-      }),
-    })
-
-    const { data, errors }: JSONResponse = await response.json()
-
-    if (response.ok && data) {
-      localStorage.setItem('userToken', data.signIn.token)
-      dispatch({
+      })
+      /**
+       * If valid, a new accessToken will be obtained and can be store
+       * in authState and added to the apollo client to be used in the
+       * header of subsequent api requests
+       */
+      localStorage.setItem('refreshToken', data.signIn.refreshToken)
+      accessTokenRef.current = data.signIn.accessToken
+      /**
+       * Start timer to get new access token before it expires
+       */
+      refreshTokenCounter()
+      return dispatch({
         type: 'LOGIN_COMPLETE',
         payload: {
-          token: data.signIn.token,
+          accessToken: data.signIn.accessToken,
           user: data.signIn.user,
         },
       })
-    } else {
-      const error = new Error(errors?.map((e) => e.message).join('\n') ?? 'unknown')
-      dispatch({
-        type: 'LOGIN_ERROR',
-        error,
+    } catch (e) {
+      /**
+       * Invalid refresh token or it has been revoked. Return to unauth state
+       */
+      return dispatch({
+        type: 'NO_REFRESH_TOKEN',
       })
     }
   }
 
   const logout = () => {
-    localStorage.removeItem('userToken')
+    localStorage.removeItem('refreshToken')
+    accessTokenRef.current = ''
     dispatch({
       type: 'LOGOUT',
     })
   }
+  /**
+   * When successfully logged in or refreshed accesToken initiate
+   * timer to get another accesss token before it expires
+   */
+  const refreshTokenCounter = () => {
+    setTimeout(() => {
+      getAccessToken(true)
+    }, 5000)
+  }
 
   return (
-    <AuthContext.Provider value={{ ...authState, getAccessToken, getIdTokenClaims, login, logout }}>
+    <AuthContext.Provider value={{ ...authState, getAccessToken, getAccessTokenClaims, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

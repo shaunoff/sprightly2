@@ -42,8 +42,14 @@ export type Journal = {
 export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
+  getAccessToken: Auth;
   signIn: Auth;
   signUp: Auth;
+};
+
+
+export type MutationGetAccessTokenArgs = {
+  refreshToken: Scalars['String'];
 };
 
 
@@ -102,8 +108,9 @@ export type Profile = {
 
 export type Auth = {
   __typename?: 'Auth';
-  user?: Maybe<User>;
-  token?: Maybe<Scalars['String']>;
+  user: User;
+  accessToken: Scalars['String'];
+  refreshToken: Scalars['String'];
 };
 
 
@@ -248,6 +255,7 @@ export type JournalResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType>;
+  getAccessToken?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationGetAccessTokenArgs, 'refreshToken'>>;
   signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
   signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
 };
@@ -275,8 +283,9 @@ export type ProfileResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type AuthResolvers<ContextType = any, ParentType extends ResolversParentTypes['Auth'] = ResolversParentTypes['Auth']> = {
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  token?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  accessToken?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  refreshToken?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

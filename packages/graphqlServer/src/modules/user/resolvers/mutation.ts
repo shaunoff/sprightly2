@@ -1,13 +1,16 @@
-import { MutationResolvers } from '@sprightly/types'
+import { MutationResolvers, MutationSignInArgs, SignupInput } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
-import { createToken } from '../../../lib'
+import { validRefreshToken, createAccessToken, createRefreshToken, decodeRefreshToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
 import bcrypt from 'bcrypt'
+// use directives instead of this
+//import { authenticated } from '../../../lib'
 
 export const Mutation: MutationResolvers = {
-  signIn: async (_, { data }, { prisma }: RootContext) => {
+  signIn: async (_, { data }: MutationSignInArgs, { prisma }: RootContext, info) => {
     const { email, password } = data
 
+    //Get user from database
     const user = await prisma.user.findUnique({
       where: {
         email,
@@ -19,18 +22,38 @@ export const Mutation: MutationResolvers = {
     if (!user) {
       throw new AuthenticationError('No user found')
     }
-
+    //Check if passwords match
     const passwordMatch = await bcrypt.compare(password, user.password)
 
     if (!passwordMatch) {
       throw new Error('Invalid Password')
     }
 
-    const token = createToken(user)
+    const accessToken = createAccessToken(user)
 
-    return {
-      user: user,
-      token: token,
+    //If refresh token, check if it's expired
+    if (user.refreshToken && validRefreshToken(user.refreshToken)) {
+      return {
+        user,
+        accessToken,
+        refreshToken: user.refreshToken,
+      }
+    } else {
+      //If refresh token, check if it's expired
+      const refreshToken = createRefreshToken(user.id)
+      await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          refreshToken,
+        },
+      })
+      return {
+        user: user,
+        accessToken,
+        refreshToken,
+      }
     }
   },
 
@@ -61,11 +84,32 @@ export const Mutation: MutationResolvers = {
       },
     })
 
-    const token = createToken(user)
-
+    const accessToken = createAccessToken(user)
+    const refreshToken = createRefreshToken(user.id)
     return {
-      token,
+      refreshToken,
+      accessToken,
       user,
+    }
+  },
+
+  getAccessToken: async (_, { refreshToken }, { prisma }: RootContext) => {
+    const validId = decodeRefreshToken(refreshToken)
+    if (!validId) throw new AuthenticationError('Token is invalid')
+    const user = await prisma.user.findUnique({
+      where: {
+        id: validId,
+      },
+      include: {
+        profile: true,
+      },
+    })
+    if (!user || !user.refreshToken) throw new AuthenticationError('No user found')
+    const accessToken = createAccessToken(user)
+    return {
+      user,
+      accessToken,
+      refreshToken: user.refreshToken,
     }
   },
 }

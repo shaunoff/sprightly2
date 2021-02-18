@@ -1,10 +1,12 @@
 import jwt from 'jsonwebtoken'
-//import UserModel from '../modules/user/models'
-import { User, exclude } from '@sprightly/types'
-// import { AuthenticationError } from 'apollo-server'
+import { User, exclude, Resolver } from '@sprightly/types'
+import { RootContext } from '../modules/context'
+import { GraphQLResolveInfo } from 'graphql'
+import { AuthenticationError } from 'apollo-server'
+import { PrismaClient } from '@prisma/client'
 const secret = 'shaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoffshaunoff'
 
-export const createToken = ({ id, email, profile }: User): string =>
+export const createAccessToken = ({ id, email, profile }: User): string =>
   jwt.sign(
     {
       id,
@@ -14,50 +16,63 @@ export const createToken = ({ id, email, profile }: User): string =>
     secret,
     {
       algorithm: 'HS256',
-      expiresIn: 360000,
+      expiresIn: 1000,
     },
   )
 
-// export const userFromToken = async (token = ''): Promise<User | undefined> => {
-//   try {
-//     if (!token) return
-//     // const validToken: any = jwt.verify(token, secret, {
-//     //   algorithms: ['HS256']
-//     // })
+export const validRefreshToken = (token: string): boolean => {
+  try {
+    jwt.verify(token, secret)
+    return true
+  } catch (e) {
+    return false
+  }
+}
 
-//     //const user = await UserModel.findOne(validToken.id)
-//     const user: User = {
-//       id: 'fghfjgfjh',
-//       password: 'String',
-//       email: 'String',
-//       firstName: 'String',
-//       lastName: 'String'
-//     }
+export const createRefreshToken = (id: string): string =>
+  jwt.sign(
+    {
+      id,
+    },
+    secret,
+    {
+      algorithm: 'HS256',
+      expiresIn: 2000000000,
+    },
+  )
 
-//     return user
-//   } catch (e) {
-//     console.log('Incorrect  Token')
-//     return null
-//   }
-// }
+export const decodeRefreshToken = (token: string): string | undefined => {
+  try {
+    const decoded = jwt.verify(token, secret)
+    if (!decoded || typeof decoded === 'string') return
+    const { id }: { id?: string } = { ...decoded }
+    return id
+  } catch (e) {
+    return
+  }
+}
 
-// export const authenticated = (next: any) => (root: any, args: any, context: any, info: any) => {
-//   if (!context.user) {
-//     throw new AuthenticationError('Not Authenticated')
-//   }
-//   return next(root, args, context, info)
-// }
+export const userFromToken = async (accessToken: string | undefined, prisma: PrismaClient): Promise<User | null> => {
+  try {
+    if (!accessToken) return null
+    const id = decodeRefreshToken(accessToken)
 
-// export const authorized = (role: any, next: any) => (root: any, args: any, context: any, info: any) => {
-//   if (context.user.role !== role) {
-//     throw new AuthenticationError(`you must have ${role} role`)
-//   }
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    })
+    return user
+  } catch (e) {
+    return null
+  }
+}
 
-//   return next(root, args, context, info)
-// }
-
-// export const myMiddleware = (role: string) => async ({ root, args, context, info }, next: any) => {
-//   console.log('hihihi', role, context)
-
-//   return next()
-// }
+export const authenticated = <T extends (root: any, args: any, context: RootContext, info: GraphQLResolveInfo) => any>(
+  next: T,
+): T => <T>((root, args, context, info) => {
+    if (!context.user) {
+      throw new AuthenticationError('Not Authenticated')
+    }
+    return next(root, args, context, info)
+  })

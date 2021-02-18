@@ -17,4 +17,5 @@ input ProfileInput {
 type Mutation {
   signUp(data: SignupInput!): Auth!
   signIn(data: LoginInput!): Auth!
+  getAccessToken(refreshToken: String! ): Auth!
 }

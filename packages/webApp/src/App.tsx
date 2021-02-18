@@ -1,29 +1,31 @@
-import React from 'react'
-import { useQuery, gql } from '@apollo/client'
-import { GetTodayQuery } from '@sprightly/types'
+import React, { useEffect, useState, memo } from 'react'
 import Login from './auth/Login'
 import { useAuth } from './auth'
-
-const GET_TODAY = gql`
-  query getToday {
-    date {
-      day
-      month
-      week_of_year
-    }
-  }
-`
+import Date from './components/Date'
 
 const App: React.FC = () => {
-  const { login, logout, isAuthenticated, user } = useAuth()
-  console.log(user)
-  if (!isAuthenticated) return <Login />
-  const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
-  if (loading || !data) return <div>loading</div>
+  const { logout, isAuthenticated, user, getAccessToken, isLoading } = useAuth()
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    getAccessToken()
+  }, [])
+  if (isLoading) return <h1>isLoading</h1>
+  if (!isAuthenticated)
+    return (
+      <div>
+        <Login />
+        {!show && <button onClick={() => setShow(true)}>showDate</button>}
+        No Auth {show && <Date />}
+      </div>
+    )
+  // const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
+  // console.log('loading', loading)
+  //if (loading || !data) return <h1>loading</h1>
   return (
     <div>
       Hello {user?.profile?.firstName}
-      {data.date?.week_of_year}
+      {!show && <button onClick={() => setShow(true)}>showDate</button>}
+      {show && <Date />}
       <button onClick={logout}>logout</button>
     </div>
   )

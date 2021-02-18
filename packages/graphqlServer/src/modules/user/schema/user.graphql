@@ -12,6 +12,7 @@ type Profile {
 }
 
 type Auth {
-  user: User
-  token: String
+  user: User!
+  accessToken: String!
+  refreshToken: String!
 }

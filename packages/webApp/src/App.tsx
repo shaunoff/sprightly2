@@ -18,9 +18,6 @@ const App: React.FC = () => {
         No Auth {show && <Date />}
       </div>
     )
-  // const { loading, data } = useQuery<GetTodayQuery>(GET_TODAY)
-  // console.log('loading', loading)
-  //if (loading || !data) return <h1>loading</h1>
   return (
     <div>
       Hello {user?.profile?.firstName}

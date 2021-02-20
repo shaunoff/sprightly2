@@ -16,7 +16,7 @@ export const createAccessToken = ({ id, email, profile }: User): string =>
     secret,
     {
       algorithm: 'HS256',
-      expiresIn: 1000,
+      expiresIn: 1800,
     },
   )
 
@@ -37,11 +37,11 @@ export const createRefreshToken = (id: string): string =>
     secret,
     {
       algorithm: 'HS256',
-      expiresIn: 2000000000,
+      expiresIn: 2000000,
     },
   )
 
-export const decodeRefreshToken = (token: string): string | undefined => {
+export const decodeToken = (token: string): string | undefined => {
   try {
     const decoded = jwt.verify(token, secret)
     if (!decoded || typeof decoded === 'string') return
@@ -55,7 +55,7 @@ export const decodeRefreshToken = (token: string): string | undefined => {
 export const userFromToken = async (accessToken: string | undefined, prisma: PrismaClient): Promise<User | null> => {
   try {
     if (!accessToken) return null
-    const id = decodeRefreshToken(accessToken)
+    const id = decodeToken(accessToken)
 
     const user = await prisma.user.findUnique({
       where: {

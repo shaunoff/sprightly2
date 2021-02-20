@@ -1,7 +1,12 @@
+directive @authenticated on FIELD_DEFINITION
+directive @authorized(role: String!) on FIELD_DEFINITION
+
 type User {
   id: ID!
   email: String
   profile: Profile
+  role: String
+  refreshToken: String
 }
 
 type Profile {

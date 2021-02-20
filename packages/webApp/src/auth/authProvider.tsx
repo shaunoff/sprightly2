@@ -180,7 +180,7 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   const refreshTokenCounter = () => {
     setTimeout(() => {
       getAccessToken(true)
-    }, 5000)
+    }, 1750000)
   }
 
   return (

@@ -13,6 +13,8 @@ export type Scalars = {
   Float: number;
 };
 
+
+
 export type Calendar = {
   __typename?: 'Calendar';
   day_id?: Maybe<Scalars['String']>;
@@ -96,6 +98,8 @@ export type User = {
   id: Scalars['ID'];
   email?: Maybe<Scalars['String']>;
   profile?: Maybe<Profile>;
+  role?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
 };
 
 export type Profile = {
@@ -227,6 +231,14 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
 };
 
+export type AuthenticatedDirectiveArgs = {  };
+
+export type AuthenticatedDirectiveResolver<Result, Parent, ContextType = any, Args = AuthenticatedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type AuthorizedDirectiveArgs = {   role: Scalars['String']; };
+
+export type AuthorizedDirectiveResolver<Result, Parent, ContextType = any, Args = AuthorizedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
 export type CalendarResolvers<ContextType = any, ParentType extends ResolversParentTypes['Calendar'] = ResolversParentTypes['Calendar']> = {
   day_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -271,6 +283,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   profile?: Resolver<Maybe<ResolversTypes['Profile']>, ParentType, ContextType>;
+  role?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  refreshToken?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -306,3 +320,14 @@ export type Resolvers<ContextType = any> = {
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
+export type DirectiveResolvers<ContextType = any> = {
+  authenticated?: AuthenticatedDirectiveResolver<any, any, ContextType>;
+  authorized?: AuthorizedDirectiveResolver<any, any, ContextType>;
+};
+
+
+/**
+ * @deprecated
+ * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
+ */
+export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;

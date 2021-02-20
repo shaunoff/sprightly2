@@ -7,12 +7,12 @@ export const Query: QueryResolvers = {
     const dates = await prisma.calendar.findMany()
     return dates
   },
-  date: authenticated(async (_, __, { prisma }) => {
+  date: async (_, __, { prisma }) => {
     const date = await prisma.calendar.findFirst({
       where: {
         day_id: new Date().toISOString().substring(0, 10),
       },
     })
     return date
-  }),
+  },
 }

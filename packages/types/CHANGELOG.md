@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/shaunoff/sprightly/compare/v0.12.0...v0.13.0) (2021-02-20)
+
+
+### Features
+
+* auth by directives ([#27](https://github.com/shaunoff/sprightly/issues/27)) ([bbe8efb](https://github.com/shaunoff/sprightly/commit/bbe8efb8984fc578c43912016d5a29f4cc8ccc52))
+
+
+
+
+
 # [0.12.0](https://github.com/shaunoff/sprightly/compare/v0.10.0...v0.12.0) (2021-02-19)
 
 

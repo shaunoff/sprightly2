@@ -13,7 +13,6 @@ const Login = () => {
       <button
         onClick={(e) => {
           e.preventDefault()
-          console.log(email, password)
           login({ email, password })
         }}
       >

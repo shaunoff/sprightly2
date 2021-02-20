@@ -1,6 +1,6 @@
 import { MutationResolvers, MutationSignInArgs, SignupInput } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
-import { validRefreshToken, createAccessToken, createRefreshToken, decodeRefreshToken } from '../../../lib'
+import { validRefreshToken, createAccessToken, createRefreshToken, decodeToken } from '../../../lib'
 import { AuthenticationError } from 'apollo-server'
 import bcrypt from 'bcrypt'
 // use directives instead of this
@@ -94,7 +94,7 @@ export const Mutation: MutationResolvers = {
   },
 
   getAccessToken: async (_, { refreshToken }, { prisma }: RootContext) => {
-    const validId = decodeRefreshToken(refreshToken)
+    const validId = decodeToken(refreshToken)
     if (!validId) throw new AuthenticationError('Token is invalid')
     const user = await prisma.user.findUnique({
       where: {

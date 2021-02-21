@@ -15,10 +15,12 @@
     "@apollo/client": "^3.3.8",
     "@sprightly/types": "^0.14.0",
     "graphql": "^15.5.0",
+    "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "parcel": "2.0.0-nightly.574",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-router-dom": "^6.0.0-beta.0"
   },
   "private": true,
   "devDependencies": {

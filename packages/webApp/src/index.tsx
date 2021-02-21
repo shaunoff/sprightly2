@@ -4,12 +4,15 @@ import App from './App'
 import { ApolloProvider } from '@apollo/client'
 import { AuthProvider } from './auth'
 import { apolloClient } from './config/apolloClient'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 render(
   <div>
     <ApolloProvider client={apolloClient()}>
       <AuthProvider>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </AuthProvider>
     </ApolloProvider>
   </div>,

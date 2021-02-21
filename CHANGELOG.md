@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/shaunoff/sprightly/compare/v0.13.0...v0.13.1) (2021-02-21)
+
+
+### Bug Fixes
+
+* pwa ([#28](https://github.com/shaunoff/sprightly/issues/28)) ([a6de6be](https://github.com/shaunoff/sprightly/commit/a6de6be5404dd1a00476da488c37b1e9360706a2))
+
+
+
+
+
 # [0.13.0](https://github.com/shaunoff/sprightly/compare/v0.12.0...v0.13.0) (2021-02-20)
 
 

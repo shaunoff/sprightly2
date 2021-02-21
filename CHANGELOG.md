@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/shaunoff/sprightly/compare/v0.14.0...v0.15.0) (2021-02-21)
+
+
+### Features
+
+* react router ([#31](https://github.com/shaunoff/sprightly/issues/31)) ([9f2a55f](https://github.com/shaunoff/sprightly/commit/9f2a55f98f0ddef81f114068b71073d9ab1c935f))
+
+
+
+
+
 # [0.14.0](https://github.com/shaunoff/sprightly/compare/v0.13.1...v0.14.0) (2021-02-21)
 
 

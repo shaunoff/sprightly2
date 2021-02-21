@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { gql, useMutation } from '@apollo/client'
 import jwt from 'jsonwebtoken'
 import AuthContext from './authContext'
@@ -52,6 +52,41 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
   const [newAccessToken] = useMutation(GET_ACCESS_TOKEN)
   const [signIn] = useMutation(SIGN_IN)
+
+  /**
+   * Add  listener for local storage. If using on multiple tabs, this will trigger login/logout on all tabs.
+   */
+  useEffect(() => {
+    const syncAuthState = () => {
+      const refreshToken = localStorage.getItem('refreshToken')
+
+      /**
+       * If there  is  no refresh token it means that it's been removed elsewhere and will need to change to a logged out state.
+       */
+      if (!refreshToken) {
+        logout()
+      } else {
+        getAccessToken()
+      }
+    }
+
+    window.addEventListener('storage', syncAuthState)
+
+    return () => {
+      window.removeEventListener('storage', syncAuthState)
+    }
+  }, [])
+
+  /**
+   * Logout
+   */
+  const logout = () => {
+    localStorage.removeItem('refreshToken')
+    accessTokenRef.current = ''
+    dispatch({
+      type: 'LOGOUT',
+    })
+  }
 
   /**
    * Get access accessToken from refreshToken. If it is an initial
@@ -166,13 +201,6 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
     }
   }
 
-  const logout = () => {
-    localStorage.removeItem('refreshToken')
-    accessTokenRef.current = ''
-    dispatch({
-      type: 'LOGOUT',
-    })
-  }
   /**
    * When successfully logged in or refreshed accesToken initiate
    * timer to get another accesss token before it expires

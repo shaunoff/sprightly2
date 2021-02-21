@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/shaunoff/sprightly/compare/v0.13.1...v0.14.0) (2021-02-21)
+
+
+### Features
+
+* add listener for login/logout ([#29](https://github.com/shaunoff/sprightly/issues/29)) ([2e5aa89](https://github.com/shaunoff/sprightly/commit/2e5aa898a32c5c2baf017ae6f91b886a18b501b6))
+
+
+
+
+
 ## [0.13.1](https://github.com/shaunoff/sprightly/compare/v0.13.0...v0.13.1) (2021-02-21)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/web-app",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "> TODO: description",
   "author": "shaun Hutch",
   "homepage": "",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.8",
-    "@sprightly/types": "^0.13.0",
+    "@sprightly/types": "^0.14.0",
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
     "parcel": "2.0.0-nightly.574",

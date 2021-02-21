@@ -58,7 +58,6 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
    */
   useEffect(() => {
     const syncAuthState = () => {
-      const { isAuthenticated } = authState
       const refreshToken = localStorage.getItem('refreshToken')
 
       /**

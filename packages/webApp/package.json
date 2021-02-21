@@ -8,6 +8,7 @@
   "scripts": {
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html --dist-dir dist  --no-scope-hoist",
+    "postbuild": "workbox generateSW",
     "clean": "rimraf dist"
   },
   "dependencies": {
@@ -19,5 +20,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "workbox-cli": "^6.1.0"
+  }
 }

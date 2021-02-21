@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useAuth from './useAuth'
+import { Navigate } from 'react-router'
 
-const Login = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useAuth()
+  const { login, isAuthenticated } = useAuth()
+  if (isAuthenticated) {
+    return <Navigate to={'/'} />
+  }
   return (
     <div>
       Login mun

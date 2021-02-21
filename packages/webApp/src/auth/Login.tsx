@@ -8,8 +8,10 @@ const Login = () => {
   return (
     <div>
       Login mun
-      <input onChange={(e) => setEmail(e.target.value)} />
-      <input onChange={(e) => setPassword(e.target.value)} />
+      <input id="login" onChange={(e) => setEmail(e.target.value)} />
+      <label htmlFor="login">Login</label>
+      <input id="password" onChange={(e) => setPassword(e.target.value)} />
+      <label htmlFor="password">Login</label>
       <button
         onClick={(e) => {
           e.preventDefault()

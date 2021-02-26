@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy } from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Routes, Route } from 'react-router-dom'
-import Login from './auth/Login'
 import { useAuth } from './auth'
-import Date from './components/Date'
+
+const Login = lazy(() => import('./auth/Login'))
+const Date = lazy(() => import('./components/Date'))
 
 const App: React.FC = () => {
   const { logout, isAuthenticated, getAccessToken, isLoading } = useAuth()

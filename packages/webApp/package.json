@@ -9,7 +9,7 @@
     "build:css": "NODE_ENV=production postcss src/style/style.tailwind.css --output src/style/style.css",
     "watch:css": "postcss -w src/style/style.tailwind.css --output src/style/style.css",
     "serve": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html --dist-dir dist  --no-scope-hoist",
+    "build": "yarn build:css && parcel build ./src/index.html --dist-dir dist  --no-scope-hoist",
     "postbuild": "workbox generateSW",
     "clean": "rimraf dist",
     "start": "concurrently \"yarn watch:css\"  \"yarn serve\""

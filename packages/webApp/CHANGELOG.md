@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/shaunoff/sprightly/compare/v0.15.1...v0.16.0) (2021-02-26)
+
+
+### Bug Fixes
+
+* styles weirdness ([#35](https://github.com/shaunoff/sprightly/issues/35)) ([dbbf0d8](https://github.com/shaunoff/sprightly/commit/dbbf0d89bf6ce505ee806e084b5742562bbca875))
+
+
+### Features
+
+* react suspense for routes ([#33](https://github.com/shaunoff/sprightly/issues/33)) ([0f3738d](https://github.com/shaunoff/sprightly/commit/0f3738db392fb97b3786552e8c9b0ea0a765f722))
+
+
+
+
+
 ## [0.15.1](https://github.com/shaunoff/sprightly/compare/v0.15.0...v0.15.1) (2021-02-26)
 
 **Note:** Version bump only for package @sprightly/web-app

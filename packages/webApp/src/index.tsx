@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import App from './App'
 import { ApolloProvider } from '@apollo/client'
@@ -11,7 +11,9 @@ render(
     <ApolloProvider client={apolloClient()}>
       <AuthProvider>
         <Router>
-          <App />
+          <Suspense fallback={<div>Loading Some Content</div>}>
+            <App />
+          </Suspense>
         </Router>
       </AuthProvider>
     </ApolloProvider>

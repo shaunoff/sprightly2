@@ -11,6 +11,8 @@
     "**/react-native/**",
     "**/expo",
     "**/expo/**",
-    "@types/react-native"
+    "@types/react-native",
+    "**/tailwindcss",
+    "**/@tailwindcss/**"
   ]
 }

@@ -13,7 +13,6 @@ const App: React.FC = () => {
   if (isLoading) return <h1>isLoading</h1>
   return (
     <>
-      <h1>App</h1>
       {isAuthenticated && <button onClick={logout}>logout</button>}
       <Routes>
         <Route path="/auth/*" element={<Login />} />

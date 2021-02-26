@@ -1,5 +1,4 @@
-import React, { useEffect, ReactNode } from 'react'
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
 export const accessTokenRef: { current: string | null } = { current: null }

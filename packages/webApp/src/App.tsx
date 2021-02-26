@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Routes, Route } from 'react-router-dom'
 import Login from './auth/Login'
@@ -13,7 +13,6 @@ const App: React.FC = () => {
   if (isLoading) return <h1>isLoading</h1>
   return (
     <>
-      <h1>App</h1>
       {isAuthenticated && <button onClick={logout}>logout</button>}
       <Routes>
         <Route path="/auth/*" element={<Login />} />

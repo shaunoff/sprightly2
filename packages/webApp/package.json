@@ -6,24 +6,36 @@
   "homepage": "",
   "license": "ISC",
   "scripts": {
-    "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html --dist-dir dist  --no-scope-hoist",
+    "build:css": "NODE_ENV=production postcss src/style/style.tailwind.css --output src/style/style.css",
+    "watch:css": "postcss -w src/style/style.tailwind.css --output src/style/style.css",
+    "serve": "parcel serve ./src/index.html",
+    "build": "yarn build:css && parcel build ./src/index.html --dist-dir dist  --no-scope-hoist",
     "postbuild": "workbox generateSW",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "start": "concurrently \"yarn watch:css\"  \"yarn serve\""
   },
   "dependencies": {
     "@apollo/client": "^3.3.8",
     "@sprightly/types": "^0.15.0",
+    "@tailwindcss/forms": "^0.2.1",
+    "autoprefixer": "^10.2.4",
     "graphql": "^15.5.0",
     "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "parcel": "2.0.0-nightly.574",
+    "postcss": "^8.2.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "^6.0.0-beta.0"
+    "react-hook-form": "^6.15.4",
+    "react-router-dom": "^6.0.0-beta.0",
+    "tailwindcss": "^2.0.3"
   },
   "private": true,
   "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3",
     "workbox-cli": "^6.1.0"
   }
 }

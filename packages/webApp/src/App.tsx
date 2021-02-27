@@ -2,7 +2,7 @@ import React, { useEffect, lazy } from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './auth'
-
+// import Login from './auth/Login'
 const Login = lazy(() => import('./auth/Login'))
 const Main = lazy(() => import('./layouts/Main'))
 

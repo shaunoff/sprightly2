@@ -1,5 +1,7 @@
 import React from 'react'
 import useAuth from '../auth/useAuth'
+import Avatar from '../ui/Avatar'
+
 const Header: React.FC = () => {
   return (
     <div className="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
@@ -55,9 +57,7 @@ const Profile = () => {
           aria-haspopup="true"
         >
           <span className="sr-only">Open user menu</span>
-          <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-gray-500">
-            <span className="font-medium leading-none text-white text-base">TW</span>
-          </span>
+          <Avatar />
         </button>
       </div>
       <div

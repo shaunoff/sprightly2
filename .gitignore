@@ -27,7 +27,7 @@ terraform.tfstate.backup
 .env.production.local
 .eslintcache
 
-# generated styles
+# generated 
 src/style/style.css
 
 npm-debug.log*

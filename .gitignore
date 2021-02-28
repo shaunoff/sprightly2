@@ -28,7 +28,7 @@ terraform.tfstate.backup
 .eslintcache
 
 # generated 
-#src/style/style.css
+src/style/style.css
 
 npm-debug.log*
 yarn-debug.log*

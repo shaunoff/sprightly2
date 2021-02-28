@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useAuth from '../auth/useAuth'
 import Avatar from '../ui/Avatar'
+import Dropdown from '../ui/Dropdown'
+import DropdownItem from '../ui/DropdownItem'
 
 const Header: React.FC = () => {
   return (
@@ -47,7 +49,12 @@ const Header: React.FC = () => {
 }
 
 const Profile = () => {
+  const [open, setOpen] = useState(false)
   const { logout } = useAuth()
+  const handleProfileClick = () => {
+    setOpen(!open)
+  }
+  console.log(open)
   return (
     <div className="ml-3 relative">
       <div>
@@ -55,36 +62,34 @@ const Profile = () => {
           className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           id="user-menu"
           aria-haspopup="true"
+          onClick={handleProfileClick}
         >
           <span className="sr-only">Open user menu</span>
-          <Avatar />
+          <Avatar initials="SH" />
         </button>
       </div>
-      <div
-        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="user-menu"
-      >
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-          Your Profile
-        </a>
-
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-          Settings
-        </a>
-
-        <a
-          onClick={logout}
-          href="#"
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          role="menuitem"
-        >
-          Sign out
-        </a>
-      </div>
+      <Dropdown isOpen={open} onClose={() => setOpen(false)}>
+        <DropdownItem icon={Icon}>Your Profile</DropdownItem>
+        <DropdownItem onClick={logout}>Sign out</DropdownItem>
+      </Dropdown>
     </div>
   )
 }
+
+const Icon = () => (
+  <svg
+    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      fillRule="evenodd"
+      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+      clipRule="evenodd"
+    />
+  </svg>
+)
 
 export default Header

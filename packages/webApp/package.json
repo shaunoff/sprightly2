@@ -19,18 +19,22 @@
     "@sprightly/types": "^0.16.0",
     "@tailwindcss/forms": "^0.2.1",
     "autoprefixer": "^10.2.4",
+    "clsx": "^1.1.1",
     "graphql": "^15.5.0",
     "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "parcel": "2.0.0-nightly.574",
-    "postcss": "^8.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-focus-lock": "^2.5.0",
     "react-hook-form": "^6.15.4",
-    "react-router-dom": "^6.0.0-beta.0"
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-transition-group": "^4.4.1"
   },
   "private": true,
   "devDependencies": {
+    "@types/react-transition-group": "^4.4.1",
+    "postcss": "^8.2.1",
     "postcss-nested": "^5.0.4",
     "tailwindcss": "^2.0.3",
     "workbox-cli": "^6.1.0"

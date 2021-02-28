@@ -10,13 +10,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 render(
   <div>
     <ApolloProvider client={apolloClient()}>
-      <AuthProvider>
-        <Router>
-          <Suspense fallback={<div>Loading Some Content</div>}>
-            <App />
-          </Suspense>
-        </Router>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <Router>
+            <Suspense fallback={<div>Loading Some Content</div>}>
+              <App />
+            </Suspense>
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
     </ApolloProvider>
   </div>,
   document.getElementById('root'),

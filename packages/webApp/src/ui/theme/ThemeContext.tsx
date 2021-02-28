@@ -3,7 +3,7 @@ import defaultTheme from './defaultTheme'
 
 // Currently only uses the default theme. We can change this here to extend using custom themes and change modes etc.
 interface ThemeContextInterface {
-  theme: unknown
+  theme: typeof defaultTheme
 }
 
 export const ThemeContext = React.createContext<ThemeContextInterface>({ theme: {} })

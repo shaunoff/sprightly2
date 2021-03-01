@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/shaunoff/sprightly/compare/v0.16.0...v0.17.0) (2021-03-01)
+
+
+### Features
+
+* initial tailwind component library ([#37](https://github.com/shaunoff/sprightly/issues/37)) ([039fea3](https://github.com/shaunoff/sprightly/commit/039fea3899fd5d6f5b6b9d7fcfc716443f2d5f42))
+
+
+
+
+
 # [0.16.0](https://github.com/shaunoff/sprightly/compare/v0.15.1...v0.16.0) (2021-02-26)
 
 

@@ -4,22 +4,19 @@ import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './auth'
 
 const Login = lazy(() => import('./auth/Login'))
-const Date = lazy(() => import('./components/Date'))
+const Main = lazy(() => import('./layouts/Main'))
 
 const App: React.FC = () => {
-  const { logout, isAuthenticated, getAccessToken, isLoading } = useAuth()
+  const { getAccessToken, isLoading } = useAuth()
   useEffect(() => {
     getAccessToken()
   }, [])
   if (isLoading) return <h1>isLoading</h1>
   return (
-    <>
-      {isAuthenticated && <button onClick={logout}>logout</button>}
-      <Routes>
-        <Route path="/auth/*" element={<Login />} />
-        <ProtectedRoute path="/*" element={<Date />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/auth/*" element={<Login />} />
+      <ProtectedRoute path="/*" element={<Main />} />
+    </Routes>
   )
 }
 

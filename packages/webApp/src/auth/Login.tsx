@@ -31,10 +31,8 @@ const Login: React.FC = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <form onSubmit={onSubmit} className="space-y-6">
-          <Input label="Mush" ref={register} name="mush" />
           <Input label="Email" ref={register} name="email" type="email" />
           <Input label="Password" ref={register} name="password" type="password" />
-          <Input label="Mush" ref={register} name="mush" />
           {error && (
             <div className="rounded-md bg-red-50 p-4">
               <div className="flex">

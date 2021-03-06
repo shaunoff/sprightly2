@@ -11,14 +11,13 @@ render(
   <div>
     <ApolloProvider client={apolloClient()}>
       <ThemeProvider>
-      <AuthProvider>
-        <Router>
-          <Suspense fallback={<div>Loading Some Content</div>}>
-            <App />
-          </Suspense>
-        </Router>
-      </AuthProvider>
-
+        <AuthProvider>
+          <Router>
+            <Suspense fallback={<div>Loading Some Content</div>}>
+              <App />
+            </Suspense>
+          </Router>
+        </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
   </div>,

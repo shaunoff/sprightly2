@@ -7,11 +7,11 @@ const Login = lazy(() => import('./auth/Login'))
 const Main = lazy(() => import('./layouts/Main'))
 
 const App: React.FC = () => {
-  const { getAccessToken, isLoading } = useAuth()
+  const { getAccessToken, initialLoad } = useAuth()
   useEffect(() => {
     getAccessToken()
   }, [])
-  if (isLoading) return <h1>isLoading</h1>
+  if (initialLoad) return <h1>isLoading</h1>
   return (
     <Routes>
       <Route path="/auth/*" element={<Login />} />

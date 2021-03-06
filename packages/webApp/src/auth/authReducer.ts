@@ -9,7 +9,7 @@ type Action =
     }
   | { type: 'LOGOUT' }
   | { type: 'LOGIN_ERROR'; error: Error }
-  | { type: 'GET_ACCESS_TOKEN' }
+  | { type: 'GET_ACCESS_TOKEN'; payload: { silently: boolean } }
   | { type: 'NO_REFRESH_TOKEN' }
   | {
       type: 'GET_TOKEN_COMPLETE'
@@ -23,9 +23,11 @@ type Action =
 export const authReducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
     case 'GET_ACCESS_TOKEN':
+      const { silently } = action.payload
       return {
         ...state,
         isLoading: true,
+        initialLoad: silently ? false : true,
       }
     case 'LOGIN_STARTED':
       return {
@@ -39,6 +41,7 @@ export const authReducer = (state: AuthState, action: Action): AuthState => {
         user: action.payload.user,
         accessToken: action.payload.accessToken,
         isLoading: false,
+        initialLoad: false,
       }
     // case 'USER_UPDATED':
     //   return {
@@ -60,6 +63,7 @@ export const authReducer = (state: AuthState, action: Action): AuthState => {
         isLoading: false,
         user: null,
         accessToken: null,
+        initialLoad: false,
       }
     case 'LOGIN_ERROR':
       return {

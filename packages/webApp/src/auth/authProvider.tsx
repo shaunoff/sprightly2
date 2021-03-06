@@ -95,7 +95,7 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
    */
   const getAccessToken = async (silently = false) => {
     if (!silently) {
-      dispatch({ type: 'GET_ACCESS_TOKEN' })
+      dispatch({ type: 'GET_ACCESS_TOKEN', payload: { silently } })
     }
 
     const refreshToken = localStorage.getItem('refreshToken')
@@ -191,12 +191,13 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
           user: data.signIn.user,
         },
       })
-    } catch (e) {
+    } catch (error) {
       /**
        * Invalid refresh token or it has been revoked. Return to unauth state
        */
       return dispatch({
-        type: 'NO_REFRESH_TOKEN',
+        type: 'LOGIN_ERROR',
+        error,
       })
     }
   }

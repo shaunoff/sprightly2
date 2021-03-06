@@ -32,7 +32,7 @@ const defaultTheme = {
         pagination: 'p-3 rounded',
       },
     },
-    block: 'w-full',
+    block: 'w-full flex justify-center',
     primary: {
       base: 'text-white bg-indigo-600 border-transparent shadow-sm',
       active:
@@ -76,6 +76,49 @@ const defaultTheme = {
   dropdownItem: {
     base: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900',
     withIcon: 'group flex items-center',
+  },
+  // Input
+  input: {
+    label: 'block text-sm font-medium text-gray-700',
+    disabled: 'opacity-40',
+    container: {
+      base: 'mt-1',
+      error: 'relative rounded-md shadow-sm',
+      valid: 'relative rounded-md shadow-sm',
+    },
+    input: {
+      base:
+        'placeholder-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
+      error:
+        'block w-full pr-10 border-red-500 text-red-500 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md',
+      valid:
+        'block w-full pr-10 border-green-500 text-green-500 placeholder-green-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md',
+    },
+    helperText: {
+      base: 'mt-1 text-xs text-gray-500',
+      error: 'text-red-500',
+      valid: 'text-green-500',
+    },
+    icon: {
+      base: 'absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none',
+      valid: 'h-5 w-5 text-green-500',
+      error: 'h-5 w-5 text-red-500',
+    },
+  },
+  // NavMenu
+  navMenu: {
+    container: 'mt-5 flex-grow flex flex-col',
+    nav: 'flex-1 px-2 bg-white space-y-1',
+  },
+  navMenuItem: {
+    base: 'group w-full flex items-center pl-2 pr-2 py-2 text-sm font-medium rounded-md',
+    active: 'bg-gray-100 text-gray-900',
+    default: 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+    icon: {
+      base: 'mr-3 h-6 w-6',
+      default: 'text-gray-400 group-hover:text-gray-500',
+      active: 'text-gray-500',
+    },
   },
 }
 

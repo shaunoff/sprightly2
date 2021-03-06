@@ -29,7 +29,7 @@ model Profile {
 }
 
 model Calendar {
-  day_id       String @id
+  day_id       String  @id
   year         Int
   month        Int
   day          Int
@@ -37,21 +37,26 @@ model Calendar {
   day_of_week  Int
   day_of_year  Int
   week_of_year Int
+  Event        Event[]
 }
 
 model Event {
-  eventId String   @id @default(uuid())
-  user    User     @relation(fields: [userId], references: [id])
-  userId  String
-  journal Journal?
-  workout Workout?
+  eventId   String    @id @default(uuid())
+  date      Calendar? @relation(fields: [dateId], references: [day_id])
+  dateId    String?
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  journal   Journal?
+  workout   Workout?
+  createdAt DateTime? @default(now())
 }
 
 model Journal {
   id      String @id @default(uuid())
   eventId String
   event   Event  @relation(fields: [eventId], references: [eventId])
-  text    String
+  entry   String
+  rating  Int
 }
 
 model Workout {

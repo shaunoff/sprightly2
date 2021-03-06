@@ -1,3 +1,8 @@
+input CreateJournalInput {
+  entry: String!
+  rating: Int!
+}
+
 type Mutation {
-  createEvent: Event!
+  createJournal(data: CreateJournalInput!): Journal @authorized(role: "user")
 }

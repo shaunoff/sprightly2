@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -11,6 +11,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
 };
 
 
@@ -33,20 +34,34 @@ export type Event = {
   userId?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
   journal?: Maybe<Journal>;
+  date?: Maybe<Calendar>;
+  createdAt?: Maybe<Scalars['Date']>;
+  dateId?: Maybe<Scalars['String']>;
 };
 
 export type Journal = {
   __typename?: 'Journal';
   id: Scalars['ID'];
-  text?: Maybe<Scalars['String']>;
+  entry?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
+};
+
+export type CreateJournalInput = {
+  entry: Scalars['String'];
+  rating: Scalars['Int'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createEvent: Event;
+  createJournal?: Maybe<Journal>;
   getAccessToken: Auth;
   signIn: Auth;
   signUp: Auth;
+};
+
+
+export type MutationCreateJournalArgs = {
+  data: CreateJournalInput;
 };
 
 
@@ -68,6 +83,8 @@ export type Query = {
   __typename?: 'Query';
   date?: Maybe<Calendar>;
   dates?: Maybe<Array<Maybe<Calendar>>>;
+  events?: Maybe<Array<Maybe<Event>>>;
+  journals?: Maybe<Array<Maybe<Event>>>;
   me?: Maybe<User>;
   users?: Maybe<Array<Maybe<User>>>;
 };
@@ -76,6 +93,7 @@ export type Query = {
 export type QueryMeArgs = {
   id: Scalars['Int'];
 };
+
 
 export type LoginInput = {
   email: Scalars['String'];
@@ -201,8 +219,10 @@ export type ResolversTypes = {
   Event: ResolverTypeWrapper<Event>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Journal: ResolverTypeWrapper<Journal>;
+  CreateJournalInput: CreateJournalInput;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
   LoginInput: LoginInput;
   SignupInput: SignupInput;
   ProfileInput: ProfileInput;
@@ -220,8 +240,10 @@ export type ResolversParentTypes = {
   Event: Event;
   ID: Scalars['ID'];
   Journal: Journal;
+  CreateJournalInput: CreateJournalInput;
   Mutation: {};
   Query: {};
+  Date: Scalars['Date'];
   LoginInput: LoginInput;
   SignupInput: SignupInput;
   ProfileInput: ProfileInput;
@@ -256,17 +278,21 @@ export type EventResolvers<ContextType = any, ParentType extends ResolversParent
   userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   journal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType>;
+  date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  dateId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type JournalResolvers<ContextType = any, ParentType extends ResolversParentTypes['Journal'] = ResolversParentTypes['Journal']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  entry?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  rating?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createEvent?: Resolver<ResolversTypes['Event'], ParentType, ContextType>;
+  createJournal?: Resolver<Maybe<ResolversTypes['Journal']>, ParentType, ContextType, RequireFields<MutationCreateJournalArgs, 'data'>>;
   getAccessToken?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationGetAccessTokenArgs, 'refreshToken'>>;
   signIn?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'data'>>;
   signUp?: Resolver<ResolversTypes['Auth'], ParentType, ContextType, RequireFields<MutationSignUpArgs, 'data'>>;
@@ -275,9 +301,15 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
   dates?: Resolver<Maybe<Array<Maybe<ResolversTypes['Calendar']>>>, ParentType, ContextType>;
+  events?: Resolver<Maybe<Array<Maybe<ResolversTypes['Event']>>>, ParentType, ContextType>;
+  journals?: Resolver<Maybe<Array<Maybe<ResolversTypes['Event']>>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryMeArgs, 'id'>>;
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
 };
+
+export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
+  name: 'Date';
+}
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -309,6 +341,7 @@ export type Resolvers<ContextType = any> = {
   Journal?: JournalResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Date?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
   Profile?: ProfileResolvers<ContextType>;
   Auth?: AuthResolvers<ContextType>;

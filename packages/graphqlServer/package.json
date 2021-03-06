@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/graphql-server",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   "dependencies": {
     "@prisma/cli": "^2.16.0-dev.68",
     "@prisma/client": "^2.19.0-dev.11",
-    "@sprightly/types": "^0.17.0",
+    "@sprightly/types": "^0.18.0",
     "apollo-datasource": "^0.7.2",
     "apollo-server": "^2.20.0",
     "graphql": "^15.4.0",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/shaunoff/sprightly/compare/v0.17.0...v0.17.1) (2021-03-06)
+
+**Note:** Version bump only for package sprightly
+
+
+
+
+
 # [0.17.0](https://github.com/shaunoff/sprightly/compare/v0.16.0...v0.17.0) (2021-03-01)
 
 

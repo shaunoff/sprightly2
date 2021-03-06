@@ -6,6 +6,7 @@ import { User } from '@sprightly/types'
 export interface AuthState {
   error?: Error
   isAuthenticated: boolean
+  initialLoad: boolean
   isLoading: boolean
   user: User | null
   accessToken: string | null
@@ -15,6 +16,7 @@ export interface AuthState {
  * Initial auth state.
  */
 export const initialAuthState: AuthState = {
+  initialLoad: false,
   isAuthenticated: false,
   isLoading: true,
   accessToken: null,

@@ -1,4 +1,34 @@
 const defaultTheme = {
+  // Alert
+  alert: {
+    container: {
+      base: 'rounded-md p-4',
+      success: 'bg-green-50',
+      error: 'bg-red-50',
+      warning: 'bg-yellow-50',
+      info: 'bg-blue-50',
+    },
+    icon: {
+      success: 'h-5 w-5 text-green-400',
+      error: 'h-5 w-5 text-red-400',
+      warning: 'h-5 w-5 text-yellow-400',
+      info: 'h-5 w-5 text-blue-400',
+    },
+    title: {
+      base: 'text-sm font-medium',
+      success: 'text-green-800',
+      error: 'text-red-800',
+      warning: 'text-yellow-800',
+      info: 'text-blue-800',
+    },
+    description: {
+      base: 'mt-2 text-sm',
+      success: 'text-green-600',
+      error: 'text-red-600',
+      warning: 'text-yellow-600',
+      info: 'text-blue-600',
+    },
+  },
   // Avatar
   avatar: {
     base: 'inline-flex items-center justify-center rounded-full bg-gray-500',

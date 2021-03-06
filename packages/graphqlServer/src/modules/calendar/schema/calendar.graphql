@@ -14,9 +14,13 @@ type Event {
   userId: String
   user: User
   journal: Journal
+  date: Calendar
+  createdAt: Date
+  dateId: String
 }
 
 type Journal {
   id: ID!
-  text: String
+  entry: String
+  rating: Int
 }

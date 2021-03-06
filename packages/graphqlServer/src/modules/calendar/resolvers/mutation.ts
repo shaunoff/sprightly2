@@ -1,33 +1,26 @@
-import { MutationResolvers } from '@sprightly/types'
+import { MutationResolvers, MutationCreateJournalArgs } from '@sprightly/types'
 import { RootContext } from '../../../modules/context'
+import { AuthenticationError } from 'apollo-server'
 
 export const Mutation: MutationResolvers = {
-  createEvent: async (_, __, { prisma }: RootContext) => {
-    const event = prisma.event.create({
-      data: { userId: 'gghjadgjhasgdjhas', journal: { create: { text: 'gfdjhsgfhfgjhdsgjfh' } } },
+  createJournal: async (_, { data }: MutationCreateJournalArgs, { prisma, user }: RootContext) => {
+    // Make sure a user is present
+    if (!user) {
+      throw new AuthenticationError('Not Authenticated')
+    }
+    const { entry, rating } = data
+
+    const userId = user.id
+    const event = await prisma.event.create({
+      data: {
+        userId: userId,
+        dateId: new Date().toISOString().substring(0, 10),
+        journal: { create: { entry, rating } },
+      },
       include: {
         journal: true,
       },
     })
-    console.log(event)
-    return event
-    // const { email, password } = data
-    // const user = await prisma.user.findUnique({
-    //   where: {
-    //     email,
-    //   },
-    // })
-    // if (!user) {
-    //   throw new AuthenticationError('No user found')
-    // }
-    // const passwordMatch = await bcrypt.compare(password, user.password)
-    // if (!passwordMatch) {
-    //   throw new Error('Invalid Password')
-    // }
-    // const token = createToken(user)
-    // return {
-    //   user: user,
-    //   token: token,
-    // }
+    return event.journal
   },
 }

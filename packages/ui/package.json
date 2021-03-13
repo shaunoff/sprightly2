@@ -10,8 +10,7 @@
     "prebuild": "rimraf dist && yarn build:css && yarn build:ts",
     "build:ts": "tsc --declaration --declarationMap --emitDeclarationOnly",
     "build": "webpack --mode production",
-    "start": "webpack --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --watch"
   },
   "author": "Shaun Hutch",
   "license": "ISC",

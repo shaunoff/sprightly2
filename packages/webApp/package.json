@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/web-app",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "description": "> TODO: description",
   "author": "shaun Hutch",
   "homepage": "",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.8",
     "@sprightly/types": "^0.19.0",
-    "@sprightly/ui": "^0.19.0",
+    "@sprightly/ui": "^0.19.1",
     "@tailwindcss/forms": "^0.2.1",
     "autoprefixer": "^10.2.4",
     "clsx": "^1.1.1",

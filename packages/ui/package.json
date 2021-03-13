@@ -4,6 +4,9 @@
   "version": "0.19.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build:css": "NODE_ENV=production postcss style/tailwind.css --output style/style.css",
     "watch:css": "postcss -w src/style/style.tailwind.css --output src/style/style.css",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/shaunoff/sprightly/compare/v0.18.0...v0.19.0) (2021-03-13)
+
+
+### Features
+
+* journal scaffold  and components ([#41](https://github.com/shaunoff/sprightly/issues/41)) ([18acb61](https://github.com/shaunoff/sprightly/commit/18acb61c25e6d228a99f5ac8e4910932c30d9e68))
+
+
+
+
+
 # [0.18.0](https://github.com/shaunoff/sprightly/compare/v0.17.2...v0.18.0) (2021-03-06)
 
 **Note:** Version bump only for package @sprightly/native-app

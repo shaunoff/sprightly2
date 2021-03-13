@@ -8,6 +8,7 @@ import Badge from '../ui/Badge'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import Happy from '../ui/icons/Happy'
 import Sad from '../ui/icons/Sad'
+import { Test } from '@sprightly/ui'
 
 import {
   GetJournalsQuery,
@@ -36,6 +37,7 @@ const CREATE_JOURNAL = gql`
 `
 
 const Journal = () => {
+  console.log(Test)
   const [isOpen, setIsOpen] = useState(false)
   const [createJournal] = useMutation<CreateJournalMutation, CreateJournalMutationVariables>(CREATE_JOURNAL, {
     refetchQueries: [{ query: GET_JOURNALS }],
@@ -79,6 +81,7 @@ const Journal = () => {
         <Button icon={Happy}>Months</Button>
         <Button icon={Sad}>Days</Button>
       </ButtonGroup>
+      <Test testProp="ioioioo" />
       <Icon icon="vHappy" className="text-green-500 m-2" />
       <Icon icon="happy" className="text-lime-500 m-2" />
       <Icon icon="neutral" className="text-yellow-500 m-2" />

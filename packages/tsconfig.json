@@ -1,4 +1,10 @@
 {
   "files": [],
-  "references": [{ "path": "webApp" }, { "path": "graphqlServer" }, { "path": "types" }, { "path": "nativeApp" }]
+  "references": [
+    { "path": "webApp" },
+    { "path": "graphqlServer" },
+    { "path": "types" },
+    { "path": "nativeApp" },
+    { "path": "ui" }
+  ]
 }

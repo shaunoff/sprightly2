@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.settings.json",
-  "references": [{ "path": "../types" }],
+  "references": [{ "path": "../types" }, { "path": "../ui" }],
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src"

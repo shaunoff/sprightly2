@@ -54,7 +54,6 @@ const Profile = () => {
   const handleProfileClick = () => {
     setOpen(!open)
   }
-  console.log(open)
   return (
     <div className="ml-3 relative">
       <div>

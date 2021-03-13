@@ -16,15 +16,16 @@ export const Query: QueryResolvers = {
     return date
   },
   journals: async (_, __, { prisma, user }: RootContext) => {
-    const events = await prisma.event.findMany({
+    const journals = await prisma.journal.findMany({
       where: {
-        userId: user?.id,
+        event: {
+          userId: user?.id,
+        },
       },
       include: {
-        journal: true,
-        date: true,
+        event: true,
       },
     })
-    return events
+    return journals
   },
 }

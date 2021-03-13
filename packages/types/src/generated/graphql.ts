@@ -1,4 +1,6 @@
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -84,7 +86,7 @@ export type Query = {
   date?: Maybe<Calendar>;
   dates?: Maybe<Array<Maybe<Calendar>>>;
   events?: Maybe<Array<Maybe<Event>>>;
-  journals?: Maybe<Array<Maybe<Event>>>;
+  journals?: Maybe<Array<Maybe<Journal>>>;
   me?: Maybe<User>;
   users?: Maybe<Array<Maybe<User>>>;
 };
@@ -135,6 +137,268 @@ export type Auth = {
   refreshToken: Scalars['String'];
 };
 
+export type GetAccessTokenMutationVariables = Exact<{
+  refreshToken: Scalars['String'];
+}>;
+
+
+export type GetAccessTokenMutation = (
+  { __typename?: 'Mutation' }
+  & { getAccessToken: (
+    { __typename?: 'Auth' }
+    & Pick<Auth, 'accessToken' | 'refreshToken'>
+    & { user: (
+      { __typename?: 'User' }
+      & Pick<User, 'id'>
+      & { profile?: Maybe<(
+        { __typename?: 'Profile' }
+        & Pick<Profile, 'firstName' | 'lastName'>
+      )> }
+    ) }
+  ) }
+);
+
+export type SignInMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+
+export type SignInMutation = (
+  { __typename?: 'Mutation' }
+  & { signIn: (
+    { __typename?: 'Auth' }
+    & Pick<Auth, 'accessToken' | 'refreshToken'>
+    & { user: (
+      { __typename?: 'User' }
+      & Pick<User, 'id'>
+      & { profile?: Maybe<(
+        { __typename?: 'Profile' }
+        & Pick<Profile, 'firstName' | 'lastName'>
+      )> }
+    ) }
+  ) }
+);
+
+export type GetTodayQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTodayQuery = (
+  { __typename?: 'Query' }
+  & { date?: Maybe<(
+    { __typename?: 'Calendar' }
+    & Pick<Calendar, 'day' | 'month' | 'week_of_year'>
+  )> }
+);
+
+export type GetJournalsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetJournalsQuery = (
+  { __typename?: 'Query' }
+  & { journals?: Maybe<Array<Maybe<(
+    { __typename?: 'Journal' }
+    & Pick<Journal, 'id' | 'entry' | 'rating'>
+  )>>> }
+);
+
+export type CreateJournalMutationVariables = Exact<{
+  data: CreateJournalInput;
+}>;
+
+
+export type CreateJournalMutation = (
+  { __typename?: 'Mutation' }
+  & { createJournal?: Maybe<(
+    { __typename?: 'Journal' }
+    & Pick<Journal, 'id' | 'entry' | 'rating'>
+  )> }
+);
+
+
+export const GetAccessTokenDocument = gql`
+    mutation GetAccessToken($refreshToken: String!) {
+  getAccessToken(refreshToken: $refreshToken) {
+    accessToken
+    refreshToken
+    user {
+      id
+      profile {
+        firstName
+        lastName
+      }
+    }
+  }
+}
+    `;
+export type GetAccessTokenMutationFn = Apollo.MutationFunction<GetAccessTokenMutation, GetAccessTokenMutationVariables>;
+
+/**
+ * __useGetAccessTokenMutation__
+ *
+ * To run a mutation, you first call `useGetAccessTokenMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useGetAccessTokenMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [getAccessTokenMutation, { data, loading, error }] = useGetAccessTokenMutation({
+ *   variables: {
+ *      refreshToken: // value for 'refreshToken'
+ *   },
+ * });
+ */
+export function useGetAccessTokenMutation(baseOptions?: Apollo.MutationHookOptions<GetAccessTokenMutation, GetAccessTokenMutationVariables>) {
+        return Apollo.useMutation<GetAccessTokenMutation, GetAccessTokenMutationVariables>(GetAccessTokenDocument, baseOptions);
+      }
+export type GetAccessTokenMutationHookResult = ReturnType<typeof useGetAccessTokenMutation>;
+export type GetAccessTokenMutationResult = Apollo.MutationResult<GetAccessTokenMutation>;
+export type GetAccessTokenMutationOptions = Apollo.BaseMutationOptions<GetAccessTokenMutation, GetAccessTokenMutationVariables>;
+export const SignInDocument = gql`
+    mutation SignIn($email: String!, $password: String!) {
+  signIn(data: {email: $email, password: $password}) {
+    accessToken
+    refreshToken
+    user {
+      id
+      profile {
+        firstName
+        lastName
+      }
+    }
+  }
+}
+    `;
+export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMutationVariables>;
+
+/**
+ * __useSignInMutation__
+ *
+ * To run a mutation, you first call `useSignInMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignInMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signInMutation, { data, loading, error }] = useSignInMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignInMutation, SignInMutationVariables>) {
+        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, baseOptions);
+      }
+export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
+export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
+export type SignInMutationOptions = Apollo.BaseMutationOptions<SignInMutation, SignInMutationVariables>;
+export const GetTodayDocument = gql`
+    query getToday {
+  date {
+    day
+    month
+    week_of_year
+  }
+}
+    `;
+
+/**
+ * __useGetTodayQuery__
+ *
+ * To run a query within a React component, call `useGetTodayQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTodayQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTodayQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetTodayQuery(baseOptions?: Apollo.QueryHookOptions<GetTodayQuery, GetTodayQueryVariables>) {
+        return Apollo.useQuery<GetTodayQuery, GetTodayQueryVariables>(GetTodayDocument, baseOptions);
+      }
+export function useGetTodayLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTodayQuery, GetTodayQueryVariables>) {
+          return Apollo.useLazyQuery<GetTodayQuery, GetTodayQueryVariables>(GetTodayDocument, baseOptions);
+        }
+export type GetTodayQueryHookResult = ReturnType<typeof useGetTodayQuery>;
+export type GetTodayLazyQueryHookResult = ReturnType<typeof useGetTodayLazyQuery>;
+export type GetTodayQueryResult = Apollo.QueryResult<GetTodayQuery, GetTodayQueryVariables>;
+export const GetJournalsDocument = gql`
+    query GetJournals {
+  journals {
+    id
+    entry
+    rating
+  }
+}
+    `;
+
+/**
+ * __useGetJournalsQuery__
+ *
+ * To run a query within a React component, call `useGetJournalsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetJournalsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetJournalsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetJournalsQuery(baseOptions?: Apollo.QueryHookOptions<GetJournalsQuery, GetJournalsQueryVariables>) {
+        return Apollo.useQuery<GetJournalsQuery, GetJournalsQueryVariables>(GetJournalsDocument, baseOptions);
+      }
+export function useGetJournalsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetJournalsQuery, GetJournalsQueryVariables>) {
+          return Apollo.useLazyQuery<GetJournalsQuery, GetJournalsQueryVariables>(GetJournalsDocument, baseOptions);
+        }
+export type GetJournalsQueryHookResult = ReturnType<typeof useGetJournalsQuery>;
+export type GetJournalsLazyQueryHookResult = ReturnType<typeof useGetJournalsLazyQuery>;
+export type GetJournalsQueryResult = Apollo.QueryResult<GetJournalsQuery, GetJournalsQueryVariables>;
+export const CreateJournalDocument = gql`
+    mutation CreateJournal($data: CreateJournalInput!) {
+  createJournal(data: $data) {
+    id
+    entry
+    rating
+  }
+}
+    `;
+export type CreateJournalMutationFn = Apollo.MutationFunction<CreateJournalMutation, CreateJournalMutationVariables>;
+
+/**
+ * __useCreateJournalMutation__
+ *
+ * To run a mutation, you first call `useCreateJournalMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateJournalMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createJournalMutation, { data, loading, error }] = useCreateJournalMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateJournalMutation(baseOptions?: Apollo.MutationHookOptions<CreateJournalMutation, CreateJournalMutationVariables>) {
+        return Apollo.useMutation<CreateJournalMutation, CreateJournalMutationVariables>(CreateJournalDocument, baseOptions);
+      }
+export type CreateJournalMutationHookResult = ReturnType<typeof useCreateJournalMutation>;
+export type CreateJournalMutationResult = Apollo.MutationResult<CreateJournalMutation>;
+export type CreateJournalMutationOptions = Apollo.BaseMutationOptions<CreateJournalMutation, CreateJournalMutationVariables>;
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -302,7 +566,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   date?: Resolver<Maybe<ResolversTypes['Calendar']>, ParentType, ContextType>;
   dates?: Resolver<Maybe<Array<Maybe<ResolversTypes['Calendar']>>>, ParentType, ContextType>;
   events?: Resolver<Maybe<Array<Maybe<ResolversTypes['Event']>>>, ParentType, ContextType>;
-  journals?: Resolver<Maybe<Array<Maybe<ResolversTypes['Event']>>>, ParentType, ContextType>;
+  journals?: Resolver<Maybe<Array<Maybe<ResolversTypes['Journal']>>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryMeArgs, 'id'>>;
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
 };

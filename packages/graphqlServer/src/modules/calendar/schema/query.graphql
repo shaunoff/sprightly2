@@ -2,5 +2,5 @@ type Query {
   dates: [Calendar]
   date: Calendar @authorized(role: "user")
   events: [Event]
-  journals: [Event]
+  journals: [Journal]
 }

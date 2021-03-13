@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import AuthContext from './authContext'
 import { initialAuthState } from './authState'
 import { authReducer } from './authReducer'
-import { User, LoginInput, Auth } from '@sprightly/types'
+import { User, LoginInput, Auth, SignInMutation, GetAccessTokenMutation } from '@sprightly/types'
 import { accessTokenRef } from '../config/apolloClient'
 
 /**
@@ -18,7 +18,7 @@ export interface AuthProviderOptions {
 }
 
 const GET_ACCESS_TOKEN = gql`
-  mutation getAccessToken($refreshToken: String!) {
+  mutation GetAccessToken($refreshToken: String!) {
     getAccessToken(refreshToken: $refreshToken) {
       accessToken
       refreshToken
@@ -33,7 +33,7 @@ const GET_ACCESS_TOKEN = gql`
   }
 `
 const SIGN_IN = gql`
-  mutation signIn($email: String!, $password: String!) {
+  mutation SignIn($email: String!, $password: String!) {
     signIn(data: { email: $email, password: $password }) {
       accessToken
       refreshToken
@@ -50,8 +50,8 @@ const SIGN_IN = gql`
 
 const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
-  const [newAccessToken] = useMutation(GET_ACCESS_TOKEN)
-  const [signIn] = useMutation(SIGN_IN)
+  const [newAccessToken] = useMutation<GetAccessTokenMutation>(GET_ACCESS_TOKEN)
+  const [signIn] = useMutation<SignInMutation>(SIGN_IN)
 
   /**
    * Add  listener for local storage. If using on multiple tabs, this will trigger login/logout on all tabs.
@@ -118,6 +118,12 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
           refreshToken,
         },
       })
+
+      if (!data) {
+        return dispatch({
+          type: 'NO_REFRESH_TOKEN',
+        })
+      }
       /**
        * If valid, a new accessToken will be obtained and can be store
        * in authState and added to the apollo client to be used in the
@@ -173,6 +179,12 @@ const AuthProvider = ({ children }: AuthProviderOptions): JSX.Element => {
           password,
         },
       })
+      if (!data) {
+        return dispatch({
+          type: 'LOGIN_ERROR',
+          error: new Error('No Data returned'),
+        })
+      }
       /**
        * If valid, a new accessToken will be obtained and can be store
        * in authState and added to the apollo client to be used in the

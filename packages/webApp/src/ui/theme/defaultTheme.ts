@@ -43,6 +43,40 @@ const defaultTheme = {
       small: 'text-sm font-medium leading-none text-white',
     },
   },
+  // Backdrop
+  backdrop: {
+    base: 'fixed inset-0 z-40 flex items-center justify-center',
+    color: 'bg-gray-500 bg-opacity-75',
+  },
+  // Badge
+  badge: {
+    base: {
+      default: 'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium shadow-sm ',
+      close: 'inline-flex items-center pl-3 py-1 pr-1 rounded-full text-sm font-medium shadow-sm ',
+      closeButton:
+        'flex-shrink-0 ml-1 h-4 w-4 rounded-full inline-flex items-center justify-center focus:outline-none focus:text-white',
+    },
+    success: {
+      default: 'text-green-800 bg-green-100',
+      close: 'text-green-400 hover:bg-green-200 hover:text-green-500 focus:bg-green-500',
+    },
+    danger: {
+      default: 'text-red-800 bg-red-100',
+      close: 'text-red-400 hover:bg-red-200 hover:text-red-500 focus:bg-red-500',
+    },
+    warning: {
+      default: 'text-orange-800 bg-orange-100',
+      close: 'text-orange-400 hover:bg-orange-200 hover:text-orange-500 focus:bg-orange-500',
+    },
+    neutral: {
+      default: 'text-gray-800 bg-gray-100',
+      close: 'text-gray-400 hover:bg-gray-200 hover:text-gray-500 focus:bg-gray-500',
+    },
+    primary: {
+      default: 'text-blue-800 bg-blue-100',
+      close: 'text-blue-400 hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-500',
+    },
+  },
   // Button
   button: {
     base: 'inline-flex items-center px-2.5 py-1.5 border',
@@ -50,7 +84,7 @@ const defaultTheme = {
       xsmall: 'px-2.5 py-1.5 text-xs font-medium rounded',
       small: 'px-3 py-2 text-sm leading-4 font-medium rounded-md',
       regular: 'px-4 py-2 text-sm font-medium rounded-md',
-      large: 'px-4 py-2 text-base font-medium rounded-md',
+      large: 'px-5 py-3 text-sm font-medium rounded-md',
       xlarge: 'px-6 py-3 text-base font-medium rounded-md',
       pagination: 'px-3 py-1 rounded-md text-xs', //For pagination only
       icon: {
@@ -94,6 +128,10 @@ const defaultTheme = {
       base: 'flex text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer',
     },
   },
+  // ButtonGroup
+  buttonGroup: {
+    base: 'relative z-0 inline-flex shadow-sm rounded-md',
+  },
   // Dropdown
   dropdown: {
     base: 'absolute mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5',
@@ -135,6 +173,13 @@ const defaultTheme = {
       error: 'h-5 w-5 text-red-500',
     },
   },
+  // Modal
+  modal: {
+    base: 'max-w-xl w-full overflow-hidden bg-white rounded-lg m-4 shadow-xl',
+    header: 'px-4 pt-4 text-lg leading-6 font-medium text-gray-900',
+    body: 'p-4',
+    footer: 'border-t bg-gray-50 px-4 py-3',
+  },
   // NavMenu
   navMenu: {
     container: 'mt-5 flex-grow flex flex-col',
@@ -149,6 +194,22 @@ const defaultTheme = {
       default: 'text-gray-400 group-hover:text-gray-500',
       active: 'text-gray-500',
     },
+  },
+  // TableHead
+  tableHead: {
+    base: 'bg-gray-50',
+  },
+  tableHeadCell: {
+    base: 'px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider',
+  },
+  tableBody: {
+    base: 'bg-white divide-y divide-gray-200',
+  },
+  tableRow: {
+    striped: 'bg-gray-50',
+  },
+  tableCell: {
+    base: 'px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900',
   },
 }
 

@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["src/**/*.spec.ts", "src/types/**/*.d.ts"],
-  "exec": "graphql-codegen --config codegen.yml && yarn kill && ts-node -r ./src/index.ts"
+  "exec": "yarn kill && ts-node -r ./src/index.ts"
 }

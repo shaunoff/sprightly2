@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import clsx from 'clsx'
 import { useTheme } from './theme/ThemeContext'
+import { overrideTailwindClasses } from 'tailwind-override'
 //import warn from './utils/warning'
 
 type IconType =
@@ -68,7 +69,7 @@ const Button = React.forwardRef<Ref, ButtonProps>(function Button(props: ButtonP
     tag = 'button',
     type = tag === 'button' ? 'button' : undefined,
     disabled = false,
-    size = 'regular',
+    size = 'large',
     layout = 'primary',
     block = false,
     icon,
@@ -168,7 +169,7 @@ const Button = React.forwardRef<Ref, ButtonProps>(function Button(props: ButtonP
   return React.createElement(
     tag,
     {
-      className: buttonStyles,
+      className: overrideTailwindClasses(buttonStyles),
       ref,
       disabled,
       type,

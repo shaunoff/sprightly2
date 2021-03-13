@@ -18231,6 +18231,11 @@ table@^6.0.4:
     slice-ansi "^4.0.0"
     string-width "^4.2.0"
 
+tailwind-override@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/tailwind-override/-/tailwind-override-0.0.7.tgz#71add1c3706ce5746bb7b30b7365585254f16bf2"
+  integrity sha512-M27RVfnMBCDobji47LLPfQjz9F+YD25/9FxXtcB3ox+uk1Zou1pJBirMTLfNyhaUAIQRLIROG6c0yI+rEhlpeg==
+
 tailwindcss@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-2.0.3.tgz#f8d07797d1f89dc4b171673c26237b58783c2c86"

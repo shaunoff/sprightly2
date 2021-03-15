@@ -15,7 +15,7 @@
     "seo"
   ],
   "scripts": {
-    "build": "gatsby build",
+    "xbuild": "gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "serve": "gatsby serve",
@@ -23,8 +23,7 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(js|ts|tsx)\" --quiet --fix",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(js|ts|tsx|css|scss|json|md|html)\" --write",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 0"
+    "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@sprightly/ui": "^0.19.1",

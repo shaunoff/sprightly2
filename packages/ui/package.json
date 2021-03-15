@@ -10,10 +10,9 @@
   "scripts": {
     "build:css": "NODE_ENV=production postcss style/tailwind.css --output style/style.css",
     "watch:css": "postcss -w src/style/style.tailwind.css --output src/style/style.css",
-    "prebuild": "rimraf dist && yarn build:css && yarn build:ts",
-    "build:ts": "tsc --declaration --declarationMap --emitDeclarationOnly",
+    "prebuild": "rimraf dist && yarn build:css",
     "build": "webpack --mode production",
-    "start": "webpack --watch"
+    "start": "webpack --watch --mode development"
   },
   "author": "Shaun Hutch",
   "license": "ISC",
@@ -27,6 +26,7 @@
     "postcss": "^8.2.8",
     "postcss-loader": "^5.2.0",
     "react": "^17.0.1",
+    "react-docgen-typescript": "^1.21.0",
     "react-dom": "^17.0.1",
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.0.3",

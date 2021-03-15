@@ -5,6 +5,7 @@ module.exports = {
   output: {
     globalObject: 'this',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
     filename: 'index.js',
     library: '@sprightly/ui',
     libraryTarget: 'umd',

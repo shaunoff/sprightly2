@@ -5,6 +5,7 @@
     { "path": "graphqlServer" },
     { "path": "types" },
     { "path": "nativeApp" },
-    { "path": "ui" }
+    { "path": "ui" },
+    { "path": "docs" }
   ]
 }

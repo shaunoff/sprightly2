@@ -1,6 +1,6 @@
 {
   "name": "@sprightly/docs",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "author": "Shaun Hutch",
   "license": "MIT",
   "keywords": [
@@ -26,7 +26,7 @@
     "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
-    "@sprightly/ui": "^0.19.1",
+    "@sprightly/ui": "^1.1.0",
     "gatsby": "^3.0.0",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
     "gatsby-plugin-image": "^1.0.0",

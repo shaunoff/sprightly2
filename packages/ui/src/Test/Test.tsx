@@ -1,11 +1,32 @@
-import React from 'react'
+import * as React from 'react'
 
+type Testy = string | number
+
+/**
+ * Column properties.
+ */
 export interface TestProps {
-  testProp: string
+  /**
+   * goioioioioi
+   * @example ./extra.examples.md
+   */
+  testProp: Testy
+  tet2: React.ReactElement
 }
 
+/**
+ * gfhdjgfjhgfjhdgfjhdgfjhdgfhj
+ * @example ./extra.examples.md
+ */
 const Test: React.FC<TestProps> = (props: TestProps) => {
-  return <div className="bg-green-600">12345Testyyyyyy: {props.testProp}</div>
+  const hello = () => {
+    console.log('dfghjgfjhg')
+  }
+  return <div className="bg-blue-600">76: {props.testProp}</div>
 }
 
+/**
+ * gfhdjgfjhgfjhdgfjhdgfjhdgfhj
+ * @random ./extra.examples.md
+ */
 export default Test

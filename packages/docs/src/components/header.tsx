@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react'
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
 
 interface HeaderProps {
-  siteTitle?: string;
+  siteTitle?: string
 }
 
 function Header({ siteTitle }: HeaderProps): ReactElement {
@@ -17,15 +17,15 @@ function Header({ siteTitle }: HeaderProps): ReactElement {
         </h1>
       </div>
     </header>
-  );
+  )
 }
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-};
+}
 
 Header.defaultProps = {
   siteTitle: '',
-};
+}
 
-export default Header;
+export default Header
